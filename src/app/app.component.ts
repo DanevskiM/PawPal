@@ -1,14 +1,13 @@
-import { Component, signal } from '@angular/core';
-import { Header } from './header/header';
-import { Formular } from './formular/formular.component';
-import { ReviewsComponent } from './reviews/reviews.component';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './header/header';
 
 @Component({
   selector: 'app-root',
-  imports: [Header, Formular, ReviewsComponent],
+  imports: [RouterOutlet, HeaderComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.css'
 })
-export class App {
-  protected readonly title = signal('PawPal');
+export class AppComponent {
+  title = 'PawPal';
 }
