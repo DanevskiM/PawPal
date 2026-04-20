@@ -1,13 +1,36 @@
+.form-section {
+  background-image: url('/assets/form-bg.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 500px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+
 .form-header {
   display: flex;
   align-items: center;
   gap: 16px;
+  background: rgba(255, 255, 255, 0.65);
+  padding: 20px 28px;
+  border-radius: 12px;
 }
 
 .form-text {
   margin: 0;
+  font-size: 24px;
+  color: #111;
 }
 
 .form-btn {
-  margin-left: 0;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
 }
