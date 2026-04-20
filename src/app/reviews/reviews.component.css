@@ -1,56 +1,30 @@
 .reviews-section {
-  padding: 60px 24px;
-}
-
-.reviews-section h2 {
   text-align: center;
-  margin-bottom: 32px;
+  background: linear-gradient(135deg, #f8f5f0, #efe7dc);
+  padding: 60px 20px;
 }
 
-.reviews-slider {
+.reviews-wrapper {
+  width: 320px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.reviews-track {
   display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding-bottom: 10px;
+  transition: transform 0.6s ease-in-out;
+}
+
+.review-slide {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  padding: 0 10px;
 }
 
 .review-card {
-  min-width: 280px;
-  max-width: 280px;
+  width: 100%;
+  box-sizing: border-box;
   background: #fff;
   border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  flex-shrink: 0;
-}
-
-.review-card p {
-  margin-bottom: 16px;
-  color: #333;
-}
-
-.review-card h4 {
-  margin: 0;
-  color: #666;
-}
-
-.reviews-slider::-webkit-scrollbar {
-  display: none;
-}
-
-.reviews-slider {
-  display: flex;
-  gap: 20px;
-  width: max-content;
-  animation: slideReviews 4s linear infinite;
-}
-
-@keyframes slideReviews {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-200px);
-  }
+  padding: 24px;
 }
