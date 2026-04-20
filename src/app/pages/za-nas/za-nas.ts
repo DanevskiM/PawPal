@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './za-nas.html',
   styleUrl: './za-nas.css',
 })
-export class ZaNas {}
+export class ZaNasComponent {}
