@@ -1,0 +1,28 @@
+.header-list {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.header-list li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 15px 10px;
+}
+
+.firstHeader{
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+.firstHeader li a{
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 15px 10px;
+}
