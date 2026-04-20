@@ -1,0 +1,13 @@
+.form-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.form-text {
+  margin: 0;
+}
+
+.form-btn {
+  margin-left: 0;
+}
