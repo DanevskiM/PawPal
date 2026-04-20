@@ -1,0 +1,420 @@
+// Design tokens
+$green-dark:    #27500A;
+$green-primary: #4A7C59;
+$green-light:   #EEF3EA;
+$green-border:  #A8D5B5;
+$amber:         #C37D16;
+$error:         #C0392B;
+$error-bg:      #FDF3F3;
+$text-primary:  #1A2115;
+$text-muted:    #6B7566;
+$border:        #E0D9CC;
+$bg-page:       #F8F5EF;
+$bg-card:       #FFFFFF;
+$radius-sm:     8px;
+$radius-md:     12px;
+$radius-lg:     16px;
+$transition:    0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ── Page container ────────────────────────────
+.reg-page {
+  min-height: 100vh;
+  background: $bg-page;
+  padding: 2rem 1rem 4rem;
+  font-family: 'Nunito', system-ui, sans-serif;
+}
+
+.form-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+// ── Header ────────────────────────────────────
+.form-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+
+  .header-logo {
+    width: 52px;
+    height: 52px;
+    background: $green-light;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0 0 4px;
+    line-height: 1.2;
+  }
+
+  .header-sub {
+    font-size: 0.85rem;
+    color: $text-muted;
+    margin: 0;
+  }
+}
+
+// ── Step card ─────────────────────────────────
+.step-card {
+  background: $bg-card;
+  border: 1px solid $border;
+  border-radius: $radius-lg;
+  padding: 1.75rem;
+  margin-bottom: 1rem;
+  animation: fadeSlide 0.2s ease both;
+
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+.step-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0;
+  }
+}
+
+.step-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $green-dark;
+  background: $green-light;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+// ── Section label ─────────────────────────────
+.section-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $green-dark;
+  background: $green-light;
+  padding: 6px 12px;
+  border-radius: $radius-sm;
+  margin-bottom: 1rem;
+  border-left: 3px solid $green-primary;
+}
+
+.divider {
+  height: 1px;
+  background: $border;
+  margin: 1.25rem 0;
+}
+
+// ── Grid layouts ──────────────────────────────
+.row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+  @media (max-width: 560px) { grid-template-columns: 1fr; }
+}
+
+.row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+
+  @media (max-width: 640px) { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 420px) { grid-template-columns: 1fr; }
+}
+
+// ── Form field ────────────────────────────────
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 1rem;
+
+  label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: $text-primary;
+
+    .req { color: $amber; }
+  }
+
+  .field-hint {
+    font-size: 0.78rem;
+    color: $text-muted;
+    margin-bottom: 0.5rem;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: $text-primary;
+    background: #FDFAF7;
+    border: 1.5px solid $border;
+    border-radius: $radius-sm;
+    outline: none;
+    transition: border-color $transition, box-shadow $transition;
+    appearance: none;
+    box-sizing: border-box;
+
+    &::placeholder { color: #B0AA9E; }
+
+    &:hover  { border-color: darken($border, 10%); }
+    &:focus  {
+      border-color: $green-primary;
+      box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.12);
+    }
+
+    &.ng-invalid.ng-touched {
+      border-color: $error;
+      box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.08);
+    }
+  }
+
+  textarea { resize: vertical; min-height: 72px; }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%236B7566' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+}
+
+// ── Radio cards ───────────────────────────────
+.radio-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.radio-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 1.5px solid $border;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: $text-muted;
+  transition: border-color $transition, background $transition, color $transition;
+
+  input[type="radio"] {
+    width: 15px;
+    height: 15px;
+    accent-color: $green-primary;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  &:has(input:checked) {
+    border-color: $green-primary;
+    background: $green-light;
+    color: $green-dark;
+  }
+
+  &:hover { border-color: $green-border; }
+}
+
+// ── Checkbox grid ─────────────────────────────
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 8px;
+}
+
+.checkbox-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1.5px solid $border;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: $text-muted;
+  transition: border-color $transition, background $transition, color $transition;
+
+  input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    accent-color: $green-primary;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  &.checked {
+    border-color: $green-primary;
+    background: $green-light;
+    color: $green-dark;
+    font-weight: 600;
+  }
+
+  &:hover { border-color: $green-border; }
+}
+
+// ── Terms checkbox ────────────────────────────
+.terms-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1.5px solid $green-border;
+  background: $green-light;
+  border-radius: $radius-md;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: $green-dark;
+  font-weight: 500;
+
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: $green-primary;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  a {
+    color: $green-primary;
+    text-decoration: underline;
+  }
+
+  &.error {
+    border-color: $error;
+    background: $error-bg;
+    color: $error;
+  }
+}
+
+// ── Cross-field error ─────────────────────────
+.cross-error {
+  font-size: 0.78rem;
+  color: $error;
+  background: $error-bg;
+  border: 1px solid lighten($error, 30%);
+  border-radius: $radius-sm;
+  padding: 8px 12px;
+  margin-top: -0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+// ── Actions bar ───────────────────────────────
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0 0;
+}
+
+.step-counter {
+  font-size: 0.8rem;
+  color: $text-muted;
+}
+
+// ── Buttons ───────────────────────────────────
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: $green-primary;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 11px 26px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background $transition, transform $transition;
+
+  &:hover:not(:disabled) { background: $green-dark; transform: translateY(-1px); }
+  &:disabled { opacity: 0.65; cursor: not-allowed; }
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: $text-muted;
+  border: 1.5px solid $border;
+  border-radius: 24px;
+  padding: 11px 22px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color $transition, color $transition;
+
+  &:hover:not(:disabled) { border-color: $green-border; color: $green-primary; }
+  &:disabled { opacity: 0.35; cursor: default; }
+}
+
+// ── Spinner ───────────────────────────────────
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+// ── Result cards ──────────────────────────────
+.result-card {
+  max-width: 520px;
+  margin: 4rem auto;
+  background: $bg-card;
+  border-radius: $radius-lg;
+  padding: 3rem 2rem;
+  text-align: center;
+  border: 1px solid $border;
+
+  .result-icon { margin-bottom: 1.25rem; }
+
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: $text-muted;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+
+    strong { color: $green-primary; }
+  }
+
+  &.error { border-color: lighten($error, 25%); }
+}
