@@ -9,18 +9,17 @@ export type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
 
 @Injectable({ providedIn: 'root' })
 export class RegistrationService {
-
   readonly submitStatus = signal<SubmitStatus>('idle');
   readonly currentStep = signal<number>(0);
 
   readonly TOTAL_STEPS = 5;
 
   readonly STEP_LABELS = [
-    { label: 'Клиент',     icon: '👤' },
-    { label: 'Милениче',   icon: '🐕' },
-    { label: 'Здравје',    icon: '🏥' },
+    { label: 'Клиент', icon: '👤' },
+    { label: 'Милениче', icon: '🐕' },
+    { label: 'Здравје', icon: '🏥' },
     { label: 'Однесување', icon: '🎾' },
-    { label: 'Престој',    icon: '📅' },
+    { label: 'Престој', icon: '📅' },
   ];
 
   goToStep(step: number): void {
@@ -41,8 +40,12 @@ export class RegistrationService {
     return Math.round(((this.currentStep() + 1) / this.TOTAL_STEPS) * 100);
   }
 
-  isFirstStep(): boolean { return this.currentStep() === 0; }
-  isLastStep(): boolean  { return this.currentStep() === this.TOTAL_STEPS - 1; }
+  isFirstStep(): boolean {
+    return this.currentStep() === 0;
+  }
+  isLastStep(): boolean {
+    return this.currentStep() === this.TOTAL_STEPS - 1;
+  }
 
   /**
    * Submit registration to backend.
@@ -56,7 +59,7 @@ export class RegistrationService {
         setTimeout(() => {
           console.log('Registration payload:', payload);
           Math.random() > 0.1 ? resolve() : reject(new Error('Server error'));
-        }, 1500)
+        }, 1500),
       );
       this.submitStatus.set('success');
     } catch {
