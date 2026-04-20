@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { Header } from './header/header';
 import { Formular } from './formular/formular.component';
-import { Reviews } from './reviews/reviews.component';
+import { ReviewsComponent } from './reviews/reviews.component';
 
 @Component({
   selector: 'app-root',
-  imports: [Header, Formular, Reviews],
+  imports: [Header, Formular, ReviewsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

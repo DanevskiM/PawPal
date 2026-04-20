@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './prestoj.html',
   styleUrl: './prestoj.css',
 })
-export class Prestoj {}
+export class PrestojComponent {}
