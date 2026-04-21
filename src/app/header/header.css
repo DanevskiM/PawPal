@@ -145,3 +145,43 @@
 .kontakt-btn::after {
   display: none !important;
 }
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  padding: 8px 0;
+  min-width: 220px;
+  z-index: 999;
+  list-style: none;
+}
+
+.dropdown-menu li a {
+  padding: 10px 20px !important;
+  color: #3a3a3a !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  display: block;
+  transition: background 0.2s;
+}
+
+.dropdown-menu li a:hover {
+  background: #F8F5EF;
+  color: #2C5F3E !important;
+}
+
+.dropdown-menu li a::after {
+  display: none !important;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}

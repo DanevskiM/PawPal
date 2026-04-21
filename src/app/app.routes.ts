@@ -6,7 +6,9 @@ import { UslugiComponent } from './pages/uslugi/uslugi';
 import { KontaktComponent } from './pages/kontakt/kontakt';
 import { ZaNasComponent } from './pages/za-nas/za-nas';
 import { RegistrationFormComponent } from './components/registration-form.component';
-
+import { IndividualniTreninziComponent } from './pages/uslugi/individualni-treninzi/individualni-treninzi';
+import { TransportComponent } from './pages/uslugi/transport/transport';
+import { RodendenskiNastaniComponent } from './pages/uslugi/rodendenski-nastani/rodendenski-nastani';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'prestoj', component: PrestojComponent },
@@ -19,4 +21,7 @@ export const routes: Routes = [
     component: RegistrationFormComponent,
     title: 'Регистрација – PawCare MK',
   },
+{ path: 'uslugi/individualni-treninzi', component: IndividualniTreninziComponent },
+{ path: 'uslugi/transport', component: TransportComponent },
+{ path: 'uslugi/rodendenski-nastani', component: RodendenskiNastaniComponent },
 ];
