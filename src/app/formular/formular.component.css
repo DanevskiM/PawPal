@@ -20,17 +20,39 @@
   padding: 20px 28px;
   border-radius: 12px;
 }
+.form-btn a{
+  text-decoration: none;
+  color: white;
+}
 
 .form-text {
   margin: 0;
   font-size: 24px;
   color: #111;
+  text-decoration: none;
 }
-
-.form-btn {
-  padding: 10px 22px;
+  .form-btn{
+  background: #4A7C59;
+  color: #fff;
   border: none;
-  border-radius: 8px;
-  background: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 999px;
   cursor: pointer;
-}
+  box-shadow: 0 8px 18px rgba(111, 74, 45, 0.25);
+  transition: all 0.3s ease;
+ }
+ .form-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(111, 74, 45, 0.35);
+  background: linear-gradient(135deg, #9b6a45, #7a5232);
+ }
+ .form-btn:active{
+  transform: translateY(0);
+  box-shadow: 0 6px 12px rgba(111, 74, 45, 0.2);
+ }
+ .form-btn:focus-visible{
+  outline: 3px solid rgba(139, 94, 60, 0.35);
+  outline-offset: 3px;
+ }
