@@ -181,3 +181,16 @@ textarea {
   border: 2px solid #1D9E75;
   box-shadow: 0 0 0 3px #1D9E7530;
 }
+.prestoj-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #F8F5EF;
+  min-height: 100vh;
+}
+.card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background-color: #FFFFFF;
+}

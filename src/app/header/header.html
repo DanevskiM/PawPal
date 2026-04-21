@@ -1,20 +1,25 @@
 <section class="header-section">
-  <div>
-    <ul class="firstHeader">
-      <li>
-        <a href="tel: +38970000000"> Контакт: +389 70 000 000 </a>
-      </li>
-      <li>
-        <a
-          href="https://www.google.com/maps/place/%D0%9C%D0%A6%D0%90/@41.9947613,21.4164126,17z/data=!3m1!4b1!4m6!3m5!1s0x13541449cd8cffa3:0x49bf2f0b143e3bff!8m2!3d41.9947573!4d21.4189875!16s%2Fg%2F1vvw_s3y?entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D"
-        >
-          Адреса: Митрополит Теодосиј Гoлоганов 40, Скопје 1000
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-bar-left">
+        <span>🐾 Добредојдовте во PawPal</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="tel:+38970000000">📞 +389 70 000 000</a>
+        <span class="divider">|</span>
+        <a href="https://www.google.com/maps/place/%D0%9C%D0%A6%D0%90/@41.9947613,21.4164126,17z">
+          📍 Митрополит Теодосиј Гологанов 40, Скопје
         </a>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a routerLink="/" class="logo-link">
+        <img src="assets/logo.png" alt="PawPal logo" width="60px" height="60px" />
+        <span class="logo-text">PawPal</span>
+      </a>
       <ul class="header-list">
         <li>
           <a routerLink="/" routerLinkActive="active-link"
@@ -22,10 +27,10 @@
           /></a>
         </li>
         <li><a routerLink="/prestoj" routerLinkActive="active-link">Престој</a></li>
-        <li><a href="#">Груминг</a></li>
-        <li><a href="#">Услуги</a></li>
+        <li><a routerLink="/grooming" routerLinkActive="active-link">Груминг</a></li>
+        <li><a routerLink="/usluge" routerLinkActive="active-link">Услуги</a></li>
         <li><a routerLink="/za-nas" routerLinkActive="active-link">За нас</a></li>
-        <li><a routerLink="/kontakt" routerLinkActive="active-link">Контакт</a></li>
+        <li><a routerLink="/kontakt" class="kontakt-btn">Контакт</a></li>
       </ul>
     </div>
   </nav>
