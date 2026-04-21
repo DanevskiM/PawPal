@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Grooming } from './grooming';
+import { GroomingComponent } from './grooming';
 
-describe('Grooming', () => {
-  let component: Grooming;
-  let fixture: ComponentFixture<Grooming>;
+describe('GroomingComponent', () => {
+  let component: GroomingComponent;
+  let fixture: ComponentFixture<GroomingComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Grooming],
+      imports: [GroomingComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Grooming);
+    fixture = TestBed.createComponent(GroomingComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
@@ -20,3 +20,4 @@ describe('Grooming', () => {
     expect(component).toBeTruthy();
   });
 });
+
