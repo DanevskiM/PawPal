@@ -164,3 +164,20 @@ textarea {
   padding: 12px;
   font-size: 15px;
 }
+
+.card.selected {
+  box-shadow: 0 0 0 3px #1D9E75;
+}
+.card.selected {
+  border: 2px solid #1D9E75;
+  box-shadow: 0 0 0 3px #1D9E7530;
+}
+
+.card.featured {
+  border: 1px solid #ddd;
+}
+
+.card.featured.selected {
+  border: 2px solid #1D9E75;
+  box-shadow: 0 0 0 3px #1D9E7530;
+}
