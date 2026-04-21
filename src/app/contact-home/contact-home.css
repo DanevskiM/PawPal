@@ -33,6 +33,12 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.14);
+  border-color: #d8b08c;
+}
+
 .contact-card h3 {
   margin-bottom: 12px;
   color: #2c1f14;
