@@ -31,7 +31,14 @@
         </li>
         <li><a routerLink="/prestoj" routerLinkActive="active-link">Престој</a></li>
         <li><a routerLink="/grooming" routerLinkActive="active-link">Груминг</a></li>
-        <li><a routerLink="/usluge" routerLinkActive="active-link">Услуги</a></li>
+        <li class="dropdown">
+  <a routerLink="/uslugi" routerLinkActive="active-link">Услуги</a>
+  <ul class="dropdown-menu">
+    <li><a routerLink="/uslugi/individualni-treninzi">Индивидуални тренинзи</a></li>
+    <li><a routerLink="/uslugi/transport">Транспорт</a></li>
+    <li><a routerLink="/uslugi/rodendenski-nastani">Роденденски настани</a></li>
+  </ul>
+</li>
         <li><a routerLink="/za-nas" routerLinkActive="active-link">За нас</a></li>
         <li><a routerLink="/kontakt" class="kontakt-btn">Контакт</a></li>
       </ul>
