@@ -21,11 +21,14 @@
         <span class="logo-text">PawPal</span>
       </a>
       <ul class="header-list">
-        <!-- <li>
-          <a routerLink="/" routerLinkActive="active-link"
-            ><img src="assets/logo.png" alt="PawPal logo" width="70px" height="70px"
-          /></a>
-        </li> -->
+        <li>
+          <a
+            routerLink="/"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Почетна</a
+          >
+        </li>
         <li><a routerLink="/prestoj" routerLinkActive="active-link">Престој</a></li>
         <li><a routerLink="/grooming" routerLinkActive="active-link">Груминг</a></li>
         <li><a routerLink="/usluge" routerLinkActive="active-link">Услуги</a></li>
