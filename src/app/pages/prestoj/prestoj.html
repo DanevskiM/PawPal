@@ -8,7 +8,7 @@
 
   <div class="packages">
 
-    <div class="card">
+    <div class="card" [class.selected]="selectedPackage === 'Basic - 1.200 ден/ноќ'">
       <h2>Basic</h2>
       <div class="price">1.200 <span>ден/ноќ</span></div>
       <ul>
@@ -17,10 +17,12 @@
         <li>2x шетња во дворот</li>
         <li>Основно следење</li>
       </ul>
-      <button class="btn-outline">Изберете</button>
+      <button [class.btn-primary]="selectedPackage === 'Basic - 1.200 ден/ноќ'"
+              [class.btn-outline]="selectedPackage !== 'Basic - 1.200 ден/ноќ'"
+              (click)="selectPackage('Basic - 1.200 ден/ноќ')">Изберете</button>
     </div>
 
-    <div class="card featured">
+    <div class="card featured" [class.selected]="selectedPackage === 'Comfort - 2.100 ден/ноќ'">
       <div class="badge-popular">✦ Најпопуларен</div>
       <h2>Comfort</h2>
       <div class="price">2.100 <span>ден/ноќ</span></div>
@@ -31,10 +33,12 @@
         <li>Дневен фото извештај</li>
         <li>Вет преглед по доаѓање</li>
       </ul>
-      <button class="btn-primary">Изберете</button>
+      <button [class.btn-primary]="selectedPackage === 'Comfort - 2.100 ден/ноќ'"
+              [class.btn-outline]="selectedPackage !== 'Comfort - 2.100 ден/ноќ'"
+              (click)="selectPackage('Comfort - 2.100 ден/ноќ')">Изберете</button>
     </div>
 
-    <div class="card">
+    <div class="card" [class.selected]="selectedPackage === 'Luxury - 3.500 ден/ноќ'">
       <h2>Luxury</h2>
       <div class="price">3.500 <span>ден/ноќ</span></div>
       <ul>
@@ -44,7 +48,9 @@
         <li>Видео повици со сопственикот</li>
         <li>Груминг вклучен</li>
       </ul>
-      <button class="btn-outline">Изберете</button>
+      <button [class.btn-primary]="selectedPackage === 'Luxury - 3.500 ден/ноќ'"
+              [class.btn-outline]="selectedPackage !== 'Luxury - 3.500 ден/ноќ'"
+              (click)="selectPackage('Luxury - 3.500 ден/ноќ')">Изберете</button>
     </div>
 
   </div>
@@ -70,9 +76,9 @@
       </div>
       <div class="form-group full">
         <label>Изберете пакет</label>
-        <select>
+        <select [(ngModel)]="selectedPackage">
           <option>Basic - 1.200 ден/ноќ</option>
-          <option selected>Comfort - 2.100 ден/ноќ</option>
+          <option>Comfort - 2.100 ден/ноќ</option>
           <option>Luxury - 3.500 ден/ноќ</option>
         </select>
       </div>
