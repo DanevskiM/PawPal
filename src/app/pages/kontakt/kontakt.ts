@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ContactService } from '../../services/contact.service';
 
 @Component({
   selector: 'app-kontakt',
@@ -12,6 +13,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 export class KontaktComponent {
   private fb = inject(FormBuilder);
   submitted = signal(false);
+  private contactService = inject(ContactService);
 
   questionForm = this.fb.nonNullable.group({
     fullName: ['', [Validators.required, Validators.minLength(2)]],
@@ -19,6 +21,7 @@ export class KontaktComponent {
     phone: [''],
     message: ['', [Validators.required, Validators.minLength(10)]],
   });
+  errorMessage = signal('');
 
   onSubmit(): void {
     if (this.questionForm.invalid) {
@@ -27,9 +30,21 @@ export class KontaktComponent {
       return;
     }
 
-    console.log(this.questionForm.getRawValue());
-    this.submitted.set(true);
-    this.questionForm.reset();
+    const payload = this.questionForm.getRawValue();
+    console.log(payload);
+
+    this.contactService.submitContact(payload).subscribe({
+      next: () => {
+        this.submitted.set(true);
+        this.errorMessage.set('');
+        this.questionForm.reset();
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+        this.submitted.set(false);
+        this.errorMessage.set('Настана грешка. Обидете се повторно.');
+      },
+    });
   }
 
   get fullName() {
