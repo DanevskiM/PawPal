@@ -34,10 +34,15 @@ export class KontaktComponent {
     console.log(payload);
 
     this.contactService.submitContact(payload).subscribe({
-      next: () => {
+      next: (res: any) => {
+        console.log('SUCCESS RESPONSE:', res);
         this.submitted.set(true);
         this.errorMessage.set('');
         this.questionForm.reset();
+
+        if (!res.emailSent) {
+          console.warn('Saved to DB, but email failed:', res.emailError);
+        }
       },
       error: (err) => {
         console.error('API Error:', err);
