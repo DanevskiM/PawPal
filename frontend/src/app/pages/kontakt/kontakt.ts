@@ -45,10 +45,14 @@ export class KontaktComponent {
         }
       },
       error: (err) => {
-        console.error('API Error:', err);
-        this.submitted.set(false);
-        this.errorMessage.set('Настана грешка. Обидете се повторно.');
-      },
+  console.error('FULL API Error:', err);
+  console.error('Backend body:', err.error);
+  console.error('Backend message:', err?.error?.message);
+  console.error('Backend emailError:', err?.error?.emailError);
+
+  this.submitted.set(false);
+  this.errorMessage.set(err?.error?.message || 'Настана грешка. Обидете се повторно.');
+}
     });
   }
 
