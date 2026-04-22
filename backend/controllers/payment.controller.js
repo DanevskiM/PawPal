@@ -1,4 +1,5 @@
 const { stripe, createPaymentIntent } = require('../services/stripe.service');
+const pool = require('../db');
 
 const createPayment = async (req, res) => {
   try {
@@ -31,7 +32,7 @@ const createPayment = async (req, res) => {
   }
 };
 
-const handleWebhook = (req, res) => {
+const handleWebhook = async (req, res) => {
   const sig = req.headers['stripe-signature'];
   const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
@@ -44,20 +45,71 @@ const handleWebhook = (req, res) => {
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
-  switch (event.type) {
-    case 'payment_intent.succeeded':
-      console.log('Payment succeeded:', event.data.object.id);
-      break;
+  try {
+    switch (event.type) {
+      case 'payment_intent.created': {
+        const paymentIntent = event.data.object;
+        console.log('Payment intent created:', paymentIntent.id);
+        break;
+      }
 
-    case 'payment_intent.payment_failed':
-      console.log('Payment failed:', event.data.object.id);
-      break;
+      case 'payment_intent.succeeded': {
+        const paymentIntent = event.data.object;
+        const reservationId = paymentIntent.metadata?.reservationId;
 
-    default:
-      console.log(`Unhandled event type: ${event.type}`);
+        console.log('Payment succeeded:', paymentIntent.id);
+        console.log('Metadata:', paymentIntent.metadata);
+        console.log('Reservation ID from metadata:', reservationId);
+
+        if (!reservationId) {
+          console.log('No reservationId found in metadata');
+          break;
+        }
+
+        const [result] = await pool.query(
+          'UPDATE reservations SET payment_status = ?, payment_intent_id = ? WHERE id = ?',
+          ['paid', paymentIntent.id, reservationId]
+        );
+
+        console.log('DB update result:', result);
+        console.log('Affected rows:', result.affectedRows);
+
+        break;
+      }
+
+      case 'payment_intent.payment_failed': {
+        const paymentIntent = event.data.object;
+        const reservationId = paymentIntent.metadata?.reservationId;
+
+        console.log('Payment failed:', paymentIntent.id);
+        console.log('Metadata:', paymentIntent.metadata);
+        console.log('Reservation ID from metadata:', reservationId);
+
+        if (!reservationId) {
+          console.log('No reservationId found in metadata');
+          break;
+        }
+
+        const [result] = await pool.query(
+          'UPDATE reservations SET payment_status = ?, payment_intent_id = ? WHERE id = ?',
+          ['failed', paymentIntent.id, reservationId]
+        );
+
+        console.log('DB update result:', result);
+        console.log('Affected rows:', result.affectedRows);
+
+        break;
+      }
+
+      default:
+        console.log(`Unhandled event type: ${event.type}`);
+    }
+
+    return res.json({ received: true });
+  } catch (error) {
+    console.error('Webhook handling error:', error);
+    return res.status(500).json({ message: 'Webhook handling failed' });
   }
-
-  return res.json({ received: true });
 };
 
 module.exports = {
