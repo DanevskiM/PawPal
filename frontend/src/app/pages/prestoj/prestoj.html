@@ -87,7 +87,25 @@
         <textarea placeholder="Диета, лекови, посебни потреби..."></textarea>
       </div>
     </div>
-    <button class="btn-primary full-btn">Испрати барање за резервација</button>
+        <button class="btn-primary full-btn" type="button" (click)="submitReservation()">
+      Испрати барање за резервација
+    </button>
+
+    @if (showPaymentChoice) {
+      <div class="payment-choice-box">
+        <p>Proceed with payment or cancel.</p>
+
+        <div class="payment-actions">
+          <button class="btn-primary" type="button" (click)="proceedToPayment()">
+            Payment
+          </button>
+
+          <button class="btn-outline" type="button" (click)="cancelPayment()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    }
   </div>
 
 </div>
