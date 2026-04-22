@@ -22,21 +22,6 @@ function parseCookieValue(cookieStr, name) {
 var XhrFactory = class {
 };
 
-// node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
-function parseCookieValue(cookieStr, name) {
-  name = encodeURIComponent(name);
-  for (const cookie of cookieStr.split(";")) {
-    const eqIndex = cookie.indexOf("=");
-    const [cookieName, cookieValue] = eqIndex == -1 ? [cookie, ""] : [cookie.slice(0, eqIndex), cookie.slice(eqIndex + 1)];
-    if (cookieName.trim() === name) {
-      return decodeURIComponent(cookieValue);
-    }
-  }
-  return null;
-}
-var XhrFactory = class {
-};
-
 // node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
 var _DOM = null;
 function getDOM() {
@@ -163,8 +148,4 @@ export {
   LOCATION_INITIALIZED,
   BrowserPlatformLocation
 };
-<<<<<<<< HEAD:frontend/.angular/cache/21.2.7/PawPal/vite/deps/chunk-YYEADSBC.js
 //# sourceMappingURL=chunk-YYEADSBC.js.map
-========
-//# sourceMappingURL=chunk-PVDSKOQW.js.map
->>>>>>>> fab20a048c837c7b573610937e6a284d0287444f:frontend/.angular/cache/21.2.7/PawPal/vite/deps/chunk-PVDSKOQW.js

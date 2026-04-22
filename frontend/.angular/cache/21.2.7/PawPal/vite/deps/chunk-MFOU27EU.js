@@ -1,10 +1,6 @@
 import {
   PlatformLocation
-<<<<<<<< HEAD:frontend/.angular/cache/21.2.7/PawPal/vite/deps/chunk-MFOU27EU.js
 } from "./chunk-YYEADSBC.js";
-========
-} from "./chunk-PVDSKOQW.js";
->>>>>>>> fab20a048c837c7b573610937e6a284d0287444f:frontend/.angular/cache/21.2.7/PawPal/vite/deps/chunk-Q3IOQS5B.js
 import {
   ApplicationRef,
   Attribute,
@@ -4667,8 +4663,4 @@ export {
   PRECONNECT_CHECK_BLOCKLIST,
   NgOptimizedImage
 };
-<<<<<<<< HEAD:frontend/.angular/cache/21.2.7/PawPal/vite/deps/chunk-MFOU27EU.js
 //# sourceMappingURL=chunk-MFOU27EU.js.map
-========
-//# sourceMappingURL=chunk-Q3IOQS5B.js.map
->>>>>>>> fab20a048c837c7b573610937e6a284d0287444f:frontend/.angular/cache/21.2.7/PawPal/vite/deps/chunk-Q3IOQS5B.js

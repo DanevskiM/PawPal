@@ -2,11 +2,7 @@ import {
   PlatformLocation,
   XhrFactory,
   parseCookieValue
-<<<<<<<< HEAD:frontend/.angular/cache/21.2.7/PawPal/vite/deps/chunk-YHHAEPXM.js
 } from "./chunk-YYEADSBC.js";
-========
-} from "./chunk-PVDSKOQW.js";
->>>>>>>> fab20a048c837c7b573610937e6a284d0287444f:frontend/.angular/cache/21.2.7/PawPal/vite/deps/chunk-UMWY6WAW.js
 import {
   APP_BOOTSTRAP_LISTENER,
   ApplicationRef,
@@ -2498,8 +2494,4 @@ export {
   withHttpTransferCache,
   httpResource
 };
-<<<<<<<< HEAD:frontend/.angular/cache/21.2.7/PawPal/vite/deps/chunk-YHHAEPXM.js
 //# sourceMappingURL=chunk-YHHAEPXM.js.map
-========
-//# sourceMappingURL=chunk-UMWY6WAW.js.map
->>>>>>>> fab20a048c837c7b573610937e6a284d0287444f:frontend/.angular/cache/21.2.7/PawPal/vite/deps/chunk-UMWY6WAW.js

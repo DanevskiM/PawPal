@@ -1,29 +1,17 @@
 import {
   withHttpTransferCache
-<<<<<<<< HEAD:frontend/.angular/cache/21.2.7/PawPal/vite/deps/chunk-WFOZE4YZ.js
 } from "./chunk-YHHAEPXM.js";
 import {
   CommonModule,
   PLATFORM_BROWSER_ID
 } from "./chunk-MFOU27EU.js";
-========
-} from "./chunk-UMWY6WAW.js";
-import {
-  CommonModule,
-  PLATFORM_BROWSER_ID
-} from "./chunk-Q3IOQS5B.js";
->>>>>>>> fab20a048c837c7b573610937e6a284d0287444f:frontend/.angular/cache/21.2.7/PawPal/vite/deps/chunk-KAFGCNBX.js
 import {
   DomAdapter,
   XhrFactory,
   getDOM,
   parseCookieValue,
   setRootDomAdapter
-<<<<<<<< HEAD:frontend/.angular/cache/21.2.7/PawPal/vite/deps/chunk-WFOZE4YZ.js
 } from "./chunk-YYEADSBC.js";
-========
-} from "./chunk-PVDSKOQW.js";
->>>>>>>> fab20a048c837c7b573610937e6a284d0287444f:frontend/.angular/cache/21.2.7/PawPal/vite/deps/chunk-KAFGCNBX.js
 import {
   APP_ID,
   ApplicationModule,
@@ -1758,8 +1746,4 @@ export {
   provideClientHydration,
   VERSION
 };
-<<<<<<<< HEAD:frontend/.angular/cache/21.2.7/PawPal/vite/deps/chunk-WFOZE4YZ.js
 //# sourceMappingURL=chunk-WFOZE4YZ.js.map
-========
-//# sourceMappingURL=chunk-KAFGCNBX.js.map
->>>>>>>> fab20a048c837c7b573610937e6a284d0287444f:frontend/.angular/cache/21.2.7/PawPal/vite/deps/chunk-KAFGCNBX.js
