@@ -12,13 +12,11 @@ export class RegistrationService {
   readonly submitStatus = signal<SubmitStatus>('idle');
   readonly currentStep = signal<number>(0);
 
-  readonly TOTAL_STEPS = 5;
+  readonly TOTAL_STEPS = 3;
 
   readonly STEP_LABELS = [
     { label: 'Клиент', icon: '👤' },
     { label: 'Милениче', icon: '🐕' },
-    { label: 'Здравје', icon: '🏥' },
-    { label: 'Однесување', icon: '🎾' },
     { label: 'Престој', icon: '📅' },
   ];
 
