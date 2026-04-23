@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -12,7 +12,16 @@ import { StepIndicatorComponent } from '../components/step-indicator.component';
   styleUrl: './formular.component.css',
 })
 export class Formular implements OnInit {
+  @ViewChild('bgVideo') bgVideo!: ElementRef<HTMLVideoElement>;
+  ngAfterViewInit(): void {
+    const video = this.bgVideo.nativeElement;
 
+    video.muted = true;
+    video.defaultMuted = true;
+    video.play().catch((error) => {
+      console.error('Video autoplay error:', error);
+    });
+  }
   private fb = inject(FormBuilder);
 
   activeStep = signal(1);
@@ -34,30 +43,30 @@ export class Formular implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       ownerInfo: this.fb.group({
-        firstName:        ['', Validators.required],
-        lastName:         ['', Validators.required],
-        phone:            ['', Validators.required],
-        email:            ['', [Validators.required, Validators.email]],
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        phone: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
         emergencyContact: [''],
       }),
       petInfo: this.fb.group({
-        name:              ['', Validators.required],
-        breed:             ['', Validators.required],
-        gender:            ['', Validators.required],
-        dateOfBirth:       [''],
-        weight:            [''],
-        neutered:          [null],
-        microchipped:      [null],
-        allergies:         [''],
+        name: ['', Validators.required],
+        breed: ['', Validators.required],
+        gender: ['', Validators.required],
+        dateOfBirth: [''],
+        weight: [''],
+        neutered: [null],
+        microchipped: [null],
+        allergies: [''],
         medicalConditions: [''],
       }),
       stayInfo: this.fb.group({
-        checkInDateTime:  ['', Validators.required],
+        checkInDateTime: ['', Validators.required],
         checkOutDateTime: [''],
-        feedingSchedule:  [''],
-        foodBrand:        [''],
-        additionalNotes:  [''],
-        termsAccepted:    [false, Validators.requiredTrue],
+        feedingSchedule: [''],
+        foodBrand: [''],
+        additionalNotes: [''],
+        termsAccepted: [false, Validators.requiredTrue],
       }),
     });
   }
@@ -75,13 +84,13 @@ export class Formular implements OnInit {
     this.currentGroup.markAllAsTouched();
     if (this.currentGroup.invalid) return;
     if (this.activeStep() < this.TOTAL_STEPS) {
-      this.activeStep.update(s => s + 1);
+      this.activeStep.update((s) => s + 1);
     }
   }
 
   prev(): void {
     if (this.activeStep() > 1) {
-      this.activeStep.update(s => s - 1);
+      this.activeStep.update((s) => s - 1);
     }
   }
 
@@ -89,7 +98,7 @@ export class Formular implements OnInit {
     this.form.markAllAsTouched();
     if (this.form.invalid) return;
     this.submitStatus.set('loading');
-    await new Promise(r => setTimeout(r, 1500));
+    await new Promise((r) => setTimeout(r, 1500));
     this.submitStatus.set('success');
   }
 
@@ -99,7 +108,13 @@ export class Formular implements OnInit {
     this.submitStatus.set('idle');
   }
 
-  get isFirst(): boolean { return this.activeStep() === 1; }
-  get isLast():  boolean { return this.activeStep() === this.TOTAL_STEPS; }
-  get progress(): number { return (this.activeStep() / this.TOTAL_STEPS) * 100; }
+  get isFirst(): boolean {
+    return this.activeStep() === 1;
+  }
+  get isLast(): boolean {
+    return this.activeStep() === this.TOTAL_STEPS;
+  }
+  get progress(): number {
+    return (this.activeStep() / this.TOTAL_STEPS) * 100;
+  }
 }
