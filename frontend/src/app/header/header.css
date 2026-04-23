@@ -27,7 +27,6 @@
 .logo-wrap {
   display: flex;
   align-items: center;
-  gap: 3px;
   text-decoration: none;
 }
 
@@ -37,6 +36,8 @@
   max-height: none !important;
   max-width: none !important;
   object-fit: contain;
+  padding-left: 10px;
+  margin-left: 10px;
 }
 
 .logo-text-wrap {
