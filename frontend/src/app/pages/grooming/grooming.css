@@ -210,76 +210,127 @@
     }
   }
 }
-
 .grooming-spa {
   background: #EDE8DC;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  overflow: hidden;
+  padding: 80px 0 0;
 
-  .spa-row {
-    display: flex;
-    min-height: 500px;
-    width: 100%;
-    margin: 0;
-    padding: 0;
+  .spa-header {
+    text-align: center;
+    padding: 0 40px;
+    margin-bottom: 48px;
 
-    &.reverse {
-      flex-direction: row-reverse;
-    }
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1B2A4A;
+      font-family: 'Playfair Display', Georgia, serif;
 
-    .spa-text {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 60px;
-
-      h2 {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #1B2A4A;
-        margin-bottom: 20px;
-        font-family: 'Playfair Display', Georgia, serif;
-        position: relative;
-        padding-bottom: 16px;
-
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: 0; left: 0;
-          width: 40px;
-          height: 2px;
-          background: #B8976A;
-        }
-      }
-
-      p {
-        font-size: 14px;
-        color: #5C5245;
-        line-height: 1.9;
-        font-family: 'Montserrat', sans-serif;
-      }
-    }
-
-    .spa-image {
-      flex: 1.5;
-      overflow: hidden;
-      min-height: 500px;
-      margin: 0;
-      padding: 0;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+      &::after {
+        content: '';
         display: block;
+        width: 50px;
+        height: 2px;
+        background: #B8976A;
+        margin: 12px auto 0;
       }
     }
   }
+
+  .spa-eyebrow {
+    display: inline-block;
+    color: #B8976A;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    border-left: 2px solid #B8976A;
+    padding-left: 10px;
+    margin-bottom: 12px;
+  }
+
+  .spa-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    min-height: 480px;
+  }
+
+  .spa-col-img {
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .spa-col-text {
+    background: #FDFAF5;
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top: 3px solid #B8976A;
+
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1B2A4A;
+      font-family: 'Playfair Display', Georgia, serif;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #5C5245;
+      line-height: 1.9;
+      font-family: 'Montserrat', sans-serif;
+    }
+  }
+
+  .spa-col-dark {
+    background: #1B2A4A;
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top: 3px solid #B8976A;
+
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: white;
+      font-family: 'Playfair Display', Georgia, serif;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.9;
+      font-family: 'Montserrat', sans-serif;
+    }
+  }
+
+  .spa-gold-line {
+    width: 32px;
+    height: 2px;
+    background: #B8976A;
+    margin-bottom: 20px;
+  }
 }
 
+@media (max-width: 768px) {
+  .grooming-spa .spa-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grooming-spa .spa-col-img {
+    height: 280px;
+  }
+}
 .grooming-faq {
   padding: 80px 60px;
   background: #F5F0E8;
@@ -307,12 +358,14 @@
     grid-template-columns: 1fr 1fr;
     gap: 16px;
     text-align: left;
+    align-items: start;
   }
 
   .faq-col {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    width: 100%;
   }
 
   .faq-item {
@@ -320,9 +373,11 @@
     border-radius: 4px;
     padding: 24px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: border-color 0.2s, background 0.2s;
     border: 1.5px solid #D4C9B5;
     border-top: 3px solid #D4C9B5;
+    width: 100%;
+    box-sizing: border-box;
 
     &:hover {
       border-color: #B8976A;
@@ -353,12 +408,14 @@
       color: #1B2A4A;
       line-height: 1.4;
       font-family: 'Montserrat', sans-serif;
+      flex: 1;
     }
   }
 
   .faq-icon {
     width: 36px;
     height: 36px;
+    min-width: 36px;
     border-radius: 4px;
     background: rgba(184,151,106,0.1);
     color: #B8976A;
@@ -386,49 +443,29 @@
   }
 }
 
-/* ── Responsive ── */
 @media (max-width: 768px) {
-  .grooming-hero {
-    height: 100vh;
-    margin-top: -70px;
-
-    .hero-content {
-      padding: 0 24px;
-
-      h1 { font-size: 2rem; }
-    }
-  }
-
-  .grooming-why {
-    padding: 60px 24px;
-  }
-
-  .grooming-steps {
-    padding: 40px 24px;
-
-    .tabs button { font-size: 0.85rem; }
-    .tab-text { padding: 24px; }
-    .tab-text h3 { font-size: 1.5rem; }
-  }
-
-  .grooming-spa .spa-row {
-    flex-direction: column !important;
-    min-height: auto;
-
-    .spa-text { padding: 40px 24px; }
-    .spa-image { min-height: 300px; }
-  }
-
   .grooming-faq {
-    padding: 60px 24px;
+    padding: 60px 16px;
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 32px;
+    }
 
     .faq-list {
       grid-template-columns: 1fr;
     }
-  }
-}
 
-@media (max-width: 480px) {
-  .grooming-hero .hero-content h1 { font-size: 1.6rem; }
-  .grooming-steps .tabs button { font-size: 0.75rem; padding: 12px 0; }
+    .faq-col {
+      width: 100%;
+    }
+
+    .faq-item {
+      padding: 20px;
+    }
+
+    .faq-question span:first-child {
+      font-size: 0.9rem;
+    }
+  }
 }
