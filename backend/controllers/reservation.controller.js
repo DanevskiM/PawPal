@@ -1,20 +1,36 @@
 const { createReservation } = require('../services/reservation.service');
+const { registrations } = require('../stores/registration.store');
 
 const createReservationHandler = async (req, res) => {
   try {
-    const {
-      petName,
-      breed,
-      arrivalDate,
-      departureDate,
-      packageName,
-      notes
-    } = req.body;
+    const { registrationId, packageName } = req.body;
+
+    if (!registrationId || !packageName) {
+      return res.status(400).json({
+        success: false,
+        message: 'Missing required fields',
+      });
+    }
+
+    const registration = registrations.get(String(registrationId));
+
+    if (!registration) {
+      return res.status(404).json({
+        success: false,
+        message: 'Registration not found',
+      });
+    }
+
+    const petName = registration?.petInfo?.name;
+    const breed = registration?.petInfo?.breed || '';
+    const arrivalDate = registration?.stayInfo?.checkInDateTime;
+    const departureDate = registration?.stayInfo?.checkOutDateTime;
+    const notes = registration?.stayInfo?.additionalNotes || '';
 
     if (!petName || !arrivalDate || !departureDate || !packageName) {
       return res.status(400).json({
         success: false,
-        message: 'Missing required fields',
+        message: 'Registration data is incomplete for reservation',
       });
     }
 
@@ -47,7 +63,7 @@ const createReservationHandler = async (req, res) => {
       arrivalDate,
       departureDate,
       packageName,
-      notes
+      notes,
     });
 
     return res.status(200).json({

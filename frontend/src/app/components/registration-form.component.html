@@ -13,9 +13,18 @@
           />
         </svg>
       </div>
+
       <h2>Регистрацијата е поднесена!</h2>
-      <p>Ви благодариме! Ќе добиете потврда на е-пошта наскоро.</p>
-      <button class="btn-primary" (click)="restart()">Нова регистрација</button>
+      <p>Ви благодариме! Формуларот е успешно зачуван.</p>
+      <p>Сега можете да продолжите кон избор на престој и плаќање.</p>
+
+      <div class="result-actions">
+        <button class="btn-primary" type="button" (click)="goToPrestoj()">
+          Продолжи кон престој
+        </button>
+
+        <button class="btn-outline" type="button" (click)="restart()">Нова регистрација</button>
+      </div>
     </div>
   }
 
@@ -32,7 +41,6 @@
       </app-step-indicator>
 
       <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
-        <!-- ЧЕКОР 1 — Сопственик -->
         @if (activeStep() === 1) {
           <div class="step-card" formGroupName="ownerInfo">
             <div class="step-card-header">
@@ -56,6 +64,7 @@
                   <span class="err">Ова поле е задолжително</span>
                 }
               </div>
+
               <div class="field">
                 <label for="lastName">Презиме <span class="req">*</span></label>
                 <input
@@ -87,6 +96,7 @@
                   <span class="err">Ова поле е задолжително</span>
                 }
               </div>
+
               <div class="field">
                 <label for="email">Е-пошта <span class="req">*</span></label>
                 <input
@@ -114,7 +124,6 @@
           </div>
         }
 
-        <!-- ЧЕКОР 2 — Милениче -->
         @if (activeStep() === 2) {
           <div class="step-card" formGroupName="petInfo">
             <div class="step-card-header">
@@ -130,6 +139,7 @@
                   <span class="err">Ова поле е задолжително</span>
                 }
               </div>
+
               <div class="field">
                 <label for="breed">Раса <span class="req">*</span></label>
                 <input
@@ -149,6 +159,7 @@
                 <label for="dob">Датум на раѓање</label>
                 <input id="dob" type="date" formControlName="dateOfBirth" />
               </div>
+
               <div class="field">
                 <label for="weight">Тежина (кг)</label>
                 <input
@@ -182,31 +193,28 @@
               <div class="field">
                 <label>Стерилизирано</label>
                 <div class="radio-group" role="radiogroup">
-                  <label class="radio-card"
-                    ><input type="radio" [value]="true" formControlName="neutered" /><span
-                      >Да</span
-                    ></label
-                  >
-                  <label class="radio-card"
-                    ><input type="radio" [value]="false" formControlName="neutered" /><span
-                      >Не</span
-                    ></label
-                  >
+                  <label class="radio-card">
+                    <input type="radio" [value]="true" formControlName="neutered" />
+                    <span>Да</span>
+                  </label>
+                  <label class="radio-card">
+                    <input type="radio" [value]="false" formControlName="neutered" />
+                    <span>Не</span>
+                  </label>
                 </div>
               </div>
+
               <div class="field">
                 <label>Чипирано</label>
                 <div class="radio-group" role="radiogroup">
-                  <label class="radio-card"
-                    ><input type="radio" [value]="true" formControlName="microchipped" /><span
-                      >Да</span
-                    ></label
-                  >
-                  <label class="radio-card"
-                    ><input type="radio" [value]="false" formControlName="microchipped" /><span
-                      >Не</span
-                    ></label
-                  >
+                  <label class="radio-card">
+                    <input type="radio" [value]="true" formControlName="microchipped" />
+                    <span>Да</span>
+                  </label>
+                  <label class="radio-card">
+                    <input type="radio" [value]="false" formControlName="microchipped" />
+                    <span>Не</span>
+                  </label>
                 </div>
               </div>
             </div>
@@ -221,6 +229,7 @@
                   placeholder="Пилешко, жито..."
                 />
               </div>
+
               <div class="field">
                 <label for="medCond">Медицински состојби</label>
                 <input
@@ -234,7 +243,6 @@
           </div>
         }
 
-        <!-- ЧЕКОР 3 — Престој -->
         @if (activeStep() === 3) {
           <div class="step-card" formGroupName="stayInfo">
             <div class="step-card-header">
@@ -253,6 +261,7 @@
                   <span class="err">Ова поле е задолжително</span>
                 }
               </div>
+
               <div class="field">
                 <label for="checkOut">Заминување</label>
                 <input id="checkOut" type="datetime-local" formControlName="checkOutDateTime" />
@@ -272,6 +281,7 @@
                   }
                 </select>
               </div>
+
               <div class="field">
                 <label for="foodBrand">Марка на храна</label>
                 <input
@@ -314,7 +324,6 @@
           </div>
         }
 
-        <!-- Навигација -->
         <div class="form-actions">
           <button type="button" class="btn-outline" (click)="prev()" [disabled]="isFirst">
             ← Назад
@@ -325,7 +334,11 @@
           @if (!isLast) {
             <button type="button" class="btn-primary" (click)="next()">Следно →</button>
           } @else {
-            <button type="submit" class="btn-primary" [disabled]="submitStatus() === 'loading'">
+            <button
+              type="submit"
+              class="btn-primary"
+              [disabled]="form.invalid || submitStatus() === 'loading'"
+            >
               @if (submitStatus() === 'loading') {
                 <span class="spinner" aria-hidden="true"></span>
                 Се поднесува...

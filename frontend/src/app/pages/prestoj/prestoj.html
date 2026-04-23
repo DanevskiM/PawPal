@@ -67,100 +67,53 @@
     </div>
   </div>
 
-  <!-- FIXED: Removed #reservationForm reference + simplified form -->
-  <form (ngSubmit)="submitReservation()" novalidate>
+  @if (isLoadingRegistration) {
     <div class="rezervacija">
-      <h2>Резервација</h2>
+      <h2>Вчитување</h2>
+      <p>Се вчитуваат податоците од регистрацијата...</p>
+    </div>
+  } @else if (registrationData) {
+    <div class="rezervacija">
+      <h2>Потврда за престој</h2>
 
-      <div class="form-grid">
-        <div class="form-group">
-          <label for="petName">Име на миленичето</label>
-          <input
-            id="petName"
-            type="text"
-            [(ngModel)]="petName"
-            name="petName"
-            placeholder="пр. Макс"
-            required
-          />
-        </div>
+      <div class="summary-box">
+        <p><strong>Регистрација ID:</strong> {{ registrationId }}</p>
 
-        <div class="form-group">
-          <label for="breed">Врста / Раса</label>
-          <input
-            id="breed"
-            type="text"
-            [(ngModel)]="breed"
-            name="breed"
-            placeholder="Labrador"
-            required
-          />
-        </div>
+        <p>
+          <strong>Милениче:</strong>
+          {{ registrationData?.petInfo?.name || registrationData?.petName || '-' }}
+        </p>
 
-        <div class="form-group">
-          <label for="arrivalDate">Датум на пристигнување</label>
-          <input
-            id="arrivalDate"
-            type="date"
-            [(ngModel)]="arrivalDate"
-            name="arrivalDate"
-            [min]="today"
-            required
-          />
-        </div>
+        <p>
+          <strong>Раса:</strong>
+          {{ registrationData?.petInfo?.breed || registrationData?.breed || '-' }}
+        </p>
 
-        <div class="form-group">
-          <label for="departureDate">Датум на заминување</label>
-          <input
-            id="departureDate"
-            type="date"
-            [(ngModel)]="departureDate"
-            name="departureDate"
-            [min]="arrivalDate || today"
-            required
-          />
-        </div>
+        <p>
+          <strong>Пристигнување:</strong>
+          {{ registrationData?.stayInfo?.checkInDateTime || registrationData?.arrivalDate || '-' }}
+        </p>
 
-        <div class="form-group full">
-          <label for="selectedPackage">Изберете пакет</label>
-          <select
-            id="selectedPackage"
-            [(ngModel)]="selectedPackage"
-            name="selectedPackage"
-            required
-          >
-            <option value="">Изберете пакет</option>
-            <option value="Basic - 1.200 ден/ноќ">Basic - 1.200 ден/ноќ</option>
-            <option value="Comfort - 2.100 ден/ноќ">Comfort - 2.100 ден/ноќ</option>
-            <option value="Luxury - 3.500 ден/ноќ">Luxury - 3.500 ден/ноќ</option>
-          </select>
-        </div>
+        <p>
+          <strong>Заминување:</strong>
+          {{
+            registrationData?.stayInfo?.checkOutDateTime || registrationData?.departureDate || '-'
+          }}
+        </p>
 
-        <div class="form-group full">
-          <label for="notes">Посебни напомени</label>
-          <textarea
-            id="notes"
-            [(ngModel)]="notes"
-            name="notes"
-            placeholder="Диета, лекови, посебни потреби..."
-          ></textarea>
-        </div>
+        <p>
+          <strong>Избран пакет:</strong>
+          {{ selectedPackage }}
+        </p>
       </div>
 
-      @if (arrivalDate && departureDate && !isDateRangeValid()) {
-        <p class="error-text">
-          Датумот на пристигнување не смее да е во минато, а датумот на заминување мора да биде
-          после пристигнувањето.
-        </p>
-      }
-
-      <!-- FIXED BUTTON: Only isSubmitting || !isFormValid() -->
       <button
         class="btn-primary full-btn"
-        type="submit"
-        [disabled]="isSubmitting || !isFormValid()"
+        type="button"
+        [disabled]="isSubmitting || !selectedPackage"
+        (click)="submitReservation()"
       >
-        {{ isSubmitting ? 'Се испраќа...' : 'Испрати барање за резервација' }}
+        {{ isSubmitting ? 'Се испраќа...' : 'Потврди пакет за престој' }}
       </button>
 
       @if (showPaymentChoice) {
@@ -210,5 +163,10 @@
         </div>
       }
     </div>
-  </form>
+  } @else {
+    <div class="rezervacija">
+      <h2>Нема податоци</h2>
+      <p>Не може да се вчита регистрацијата. Вратете се и пополнете го формуларот повторно.</p>
+    </div>
+  }
 </div>

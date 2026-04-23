@@ -1,4 +1,6 @@
+const crypto = require('crypto');
 const { sendRegistrationEmails } = require('../services/email.service');
+const { registrations } = require('../stores/registration.store');
 
 const submitRegistration = async (req, res) => {
   try {
@@ -22,11 +24,25 @@ const submitRegistration = async (req, res) => {
       });
     }
 
-    await sendRegistrationEmails(formData);
+    const registrationId = crypto.randomUUID();
+
+    const registrationRecord = {
+      registrationId,
+      ...formData,
+      createdAt: new Date().toISOString(),
+    };
+
+    registrations.set(registrationId, registrationRecord);
+
+    await sendRegistrationEmails({
+      ...formData,
+      registrationId,
+    });
 
     return res.status(201).json({
       success: true,
       message: 'Registration submitted successfully',
+      registrationId,
     });
   } catch (error) {
     console.error('Registration submit error:', error);
@@ -39,6 +55,31 @@ const submitRegistration = async (req, res) => {
   }
 };
 
+const getRegistrationById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const registration = registrations.get(id);
+
+    if (!registration) {
+      return res.status(404).json({
+        success: false,
+        message: 'Registration not found',
+      });
+    }
+
+    return res.status(200).json(registration);
+  } catch (error) {
+    console.error('Get registration error:', error);
+
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to load registration',
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   submitRegistration,
+  getRegistrationById,
 };
