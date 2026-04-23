@@ -22,7 +22,6 @@
         <button class="btn-primary" type="button" (click)="goToPrestoj()">
           Продолжи кон престој
         </button>
-
         <button class="btn-outline" type="button" (click)="restart()">Нова регистрација</button>
       </div>
     </div>
@@ -40,17 +39,30 @@
       <app-step-indicator [steps]="steps" [currentStep]="activeStep() - 1" [totalSteps]="3">
       </app-step-indicator>
 
+      <div class="info-notice">
+        <div class="notice-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="7" stroke="#B8976A" stroke-width="1.5" />
+            <path d="M8 5v4M8 11v.5" stroke="#B8976A" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </div>
+        <p>
+          Пред изборот на пакет за престој, потребно е да го пополните
+          <strong>формуларот со основни информации.</strong>
+        </p>
+      </div>
+
       <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
         @if (activeStep() === 1) {
           <div class="step-card" formGroupName="ownerInfo">
             <div class="step-card-header">
               <h2>Информации за сопственикот</h2>
-              <span class="step-badge">Чекор 1 / 3</span>
+              <span class="step-badge">Чекор 1 / 4</span>
             </div>
 
             <div class="row-2">
               <div class="field">
-                <label for="firstName">Ime <span class="req">*</span></label>
+                <label for="firstName">Име <span class="req">*</span></label>
                 <input
                   id="firstName"
                   type="text"
@@ -128,12 +140,12 @@
           <div class="step-card" formGroupName="petInfo">
             <div class="step-card-header">
               <h2>Информации за милениче</h2>
-              <span class="step-badge">Чекор 2 / 3</span>
+              <span class="step-badge">Чекор 2 / 4</span>
             </div>
 
             <div class="row-2">
               <div class="field">
-                <label for="petName">Ime на милениче <span class="req">*</span></label>
+                <label for="petName">Име на милениче <span class="req">*</span></label>
                 <input id="petName" type="text" formControlName="name" placeholder="Макс" />
                 @if (ctrl('petInfo', 'name')?.invalid && ctrl('petInfo', 'name')?.touched) {
                   <span class="err">Ова поле е задолжително</span>
@@ -247,13 +259,13 @@
           <div class="step-card" formGroupName="stayInfo">
             <div class="step-card-header">
               <h2>Датуми на престој и хранење</h2>
-              <span class="step-badge">Чекор 3 / 3</span>
+              <span class="step-badge">Чекор 3 / 4</span>
             </div>
 
             <div class="row-2">
               <div class="field">
                 <label for="checkIn">Пристигнување <span class="req">*</span></label>
-                <input id="checkIn" type="datetime-local" formControlName="checkInDateTime" />
+                <input id="checkIn" type="date" formControlName="checkInDateTime" />
                 @if (
                   ctrl('stayInfo', 'checkInDateTime')?.invalid &&
                   ctrl('stayInfo', 'checkInDateTime')?.touched
@@ -264,7 +276,7 @@
 
               <div class="field">
                 <label for="checkOut">Заминување</label>
-                <input id="checkOut" type="datetime-local" formControlName="checkOutDateTime" />
+                <input id="checkOut" type="date" formControlName="checkOutDateTime" />
               </div>
             </div>
 
@@ -329,7 +341,7 @@
             ← Назад
           </button>
 
-          <span class="step-counter" aria-live="polite"> Чекор {{ activeStep() }} / 3 </span>
+          <span class="step-counter" aria-live="polite">Чекор {{ activeStep() }} / 4</span>
 
           @if (!isLast) {
             <button type="button" class="btn-primary" (click)="next()">Следно →</button>
