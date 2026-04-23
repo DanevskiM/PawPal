@@ -194,3 +194,9 @@ textarea {
   padding: 1.5rem;
   background-color: #FFFFFF;
 }
+
+.error-text {
+  color: #c62828;
+  margin-top: 12px;
+  font-size: 14px;
+}

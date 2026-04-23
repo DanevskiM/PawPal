@@ -1,515 +1,332 @@
 <section class="reg-page" aria-label="Формуларот за регистрација">
-
-  <!-- ── Success screen ── -->
-  @if (isSuccess()) {
+  @if (submitStatus() === 'success') {
     <div class="result-card success" role="status" aria-live="polite">
       <div class="result-icon">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-          <circle cx="20" cy="20" r="19" stroke="#4A7C59" stroke-width="2"/>
-          <path d="M11 20l6 6 12-12" stroke="#4A7C59" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="20" cy="20" r="19" stroke="#4A7C59" stroke-width="2" />
+          <path
+            d="M11 20l6 6 12-12"
+            stroke="#4A7C59"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
       </div>
       <h2>Регистрацијата е поднесена!</h2>
-      <p>Ви благодариме! Ќе добиете потврда на е-пошта наскоро.<br>
-         Цената за регистрација е <strong>600 денари</strong> – еднократно.</p>
+      <p>Ви благодариме! Ќе добиете потврда на е-пошта наскоро.</p>
       <button class="btn-primary" (click)="restart()">Нова регистрација</button>
     </div>
   }
 
-  <!-- ── Error screen ── -->
-  @if (isError()) {
-    <div class="result-card error" role="alert">
-      <p>Се случи грешка. Обидете се повторно или контактирајте нè.</p>
-      <button class="btn-outline" (click)="submit()">Обиди се повторно</button>
-    </div>
-  }
-
-  <!-- ── Form ── -->
-  @if (!isSuccess()) {
+  @if (submitStatus() !== 'success') {
     <div class="form-wrapper">
-
-      <!-- Header -->
       <div class="form-header">
-        <div class="header-logo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="#4A7C59" aria-hidden="true">
-            <path d="M12 2C9.5 2 8 4 8 6s1 3.5 2.5 4.5L9 14c-1 2.5.5 5 3 5s4-2.5
-                     3-5l-1.5-3.5C15 9.5 16 8 16 6c0-2-1.5-4-4-4zM6 5C4.5 5 3 6.5
-                     3 8s1 3 2.5 3S8 9.5 8 8 7.5 5 6 5zm12 0c-1.5 0-2.5 1.5-2.5
-                     3S16.5 11 18 11s2.5-1.5 2.5-3S19.5 5 18 5z"/>
-          </svg>
-        </div>
         <div>
           <h1>Регистрација на милениче</h1>
-          <p class="header-sub">
-            PawCare MK · 600 ден. еднократно · Пополнете посебен образец за секое куче
-          </p>
+          <p class="header-sub">PawPal · Пополнете посебен образец за секое куче</p>
         </div>
       </div>
 
-      <!-- Stepper -->
-      <app-step-indicator
-        [steps]="steps"
-        [currentStep]="stepIndex"
-        [totalSteps]="5">
+      <app-step-indicator [steps]="steps" [currentStep]="activeStep() - 1" [totalSteps]="3">
       </app-step-indicator>
 
-      <!-- Form card -->
       <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
-
-        <!-- ──────────────────────────────────────
-             STEP 1 – Информации за клиентот
-             ────────────────────────────────────── -->
-        @if (stepIndex === 0) {
-          <div class="step-card" formGroupName="clientInfo">
+        <!-- ЧЕКОР 1 — Сопственик -->
+        @if (activeStep() === 1) {
+          <div class="step-card" formGroupName="ownerInfo">
             <div class="step-card-header">
-              <h2>Информации за клиентот</h2>
-              <span class="step-badge">Чекор 1 / 5</span>
+              <h2>Информации за сопственикот</h2>
+              <span class="step-badge">Чекор 1 / 3</span>
             </div>
 
             <div class="row-2">
               <div class="field">
                 <label for="firstName">Ime <span class="req">*</span></label>
-                <input id="firstName" type="text" formControlName="firstName"
-                       placeholder="Марко" autocomplete="given-name">
-                <app-field-error [control]="ctrl('clientInfo','firstName')"/>
+                <input
+                  id="firstName"
+                  type="text"
+                  formControlName="firstName"
+                  placeholder="Марко"
+                  autocomplete="given-name"
+                />
+                @if (
+                  ctrl('ownerInfo', 'firstName')?.invalid && ctrl('ownerInfo', 'firstName')?.touched
+                ) {
+                  <span class="err">Ова поле е задолжително</span>
+                }
               </div>
               <div class="field">
                 <label for="lastName">Презиме <span class="req">*</span></label>
-                <input id="lastName" type="text" formControlName="lastName"
-                       placeholder="Петров" autocomplete="family-name">
-                <app-field-error [control]="ctrl('clientInfo','lastName')"/>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="address">Адреса <span class="req">*</span></label>
-              <input id="address" type="text" formControlName="address"
-                     placeholder="ул. Македонија бр. 1" autocomplete="street-address">
-              <app-field-error [control]="ctrl('clientInfo','address')"/>
-            </div>
-
-            <div class="row-3">
-              <div class="field">
-                <label for="city">Град <span class="req">*</span></label>
-                <input id="city" type="text" formControlName="city"
-                       placeholder="Скопје" autocomplete="address-level2">
-                <app-field-error [control]="ctrl('clientInfo','city')"/>
-              </div>
-              <div class="field">
-                <label for="postalCode">Поштенски број <span class="req">*</span></label>
-                <input id="postalCode" type="text" formControlName="postalCode"
-                       placeholder="1000" maxlength="4" autocomplete="postal-code">
-                <app-field-error [control]="ctrl('clientInfo','postalCode')"/>
-              </div>
-              <div class="field">
-                <label for="phone">Телефон <span class="req">*</span></label>
-                <input id="phone" type="tel" formControlName="phone"
-                       placeholder="+389 70 000 000" autocomplete="tel">
-                <app-field-error [control]="ctrl('clientInfo','phone')"/>
+                <input
+                  id="lastName"
+                  type="text"
+                  formControlName="lastName"
+                  placeholder="Петров"
+                  autocomplete="family-name"
+                />
+                @if (
+                  ctrl('ownerInfo', 'lastName')?.invalid && ctrl('ownerInfo', 'lastName')?.touched
+                ) {
+                  <span class="err">Ова поле е задолжително</span>
+                }
               </div>
             </div>
 
             <div class="row-2">
               <div class="field">
-                <label for="mobilePhone">Мобилен / иден телефон</label>
-                <input id="mobilePhone" type="tel" formControlName="mobilePhone"
-                       placeholder="+389 78 000 000">
-                <app-field-error [control]="ctrl('clientInfo','mobilePhone')"/>
+                <label for="phone">Телефон <span class="req">*</span></label>
+                <input
+                  id="phone"
+                  type="tel"
+                  formControlName="phone"
+                  placeholder="+389 70 000 000"
+                  autocomplete="tel"
+                />
+                @if (ctrl('ownerInfo', 'phone')?.invalid && ctrl('ownerInfo', 'phone')?.touched) {
+                  <span class="err">Ова поле е задолжително</span>
+                }
               </div>
               <div class="field">
                 <label for="email">Е-пошта <span class="req">*</span></label>
-                <input id="email" type="email" formControlName="email"
-                       placeholder="ime@email.com" autocomplete="email">
-                <app-field-error [control]="ctrl('clientInfo','email')"/>
+                <input
+                  id="email"
+                  type="email"
+                  formControlName="email"
+                  placeholder="ime@email.com"
+                  autocomplete="email"
+                />
+                @if (ctrl('ownerInfo', 'email')?.invalid && ctrl('ownerInfo', 'email')?.touched) {
+                  <span class="err">Внесете валидна е-пошта</span>
+                }
               </div>
             </div>
 
-            <div class="divider"></div>
-            <h3 class="section-label">Итен контакт</h3>
-
             <div class="field">
-              <label for="emergencyContact">
-                Лице за контакт во итни случаи (пријател / семејство) <span class="req">*</span>
-              </label>
-              <input id="emergencyContact" type="text" formControlName="emergencyContact"
-                     placeholder="Ана Петрова – +389 70 111 222">
-              <app-field-error [control]="ctrl('clientInfo','emergencyContact')"/>
-            </div>
-
-            <div class="field">
-              <label for="alternativePerson">
-                Алтернативно лице кое може да го земе милениче <span class="req">*</span>
-              </label>
-              <input id="alternativePerson" type="text" formControlName="alternativePerson"
-                     placeholder="Јован Марков – +389 70 333 444">
-              <app-field-error [control]="ctrl('clientInfo','alternativePerson')"/>
+              <label for="emergencyContact">Лице за контакт во итни случаи</label>
+              <input
+                id="emergencyContact"
+                type="text"
+                formControlName="emergencyContact"
+                placeholder="Ана Петрова – +389 70 111 222"
+              />
             </div>
           </div>
         }
 
-        <!-- ──────────────────────────────────────
-             STEP 2 – Информации за милениче
-             ────────────────────────────────────── -->
-        @if (stepIndex === 1) {
+        <!-- ЧЕКОР 2 — Милениче -->
+        @if (activeStep() === 2) {
           <div class="step-card" formGroupName="petInfo">
             <div class="step-card-header">
               <h2>Информации за милениче</h2>
-              <span class="step-badge">Чекор 2 / 5</span>
+              <span class="step-badge">Чекор 2 / 3</span>
             </div>
 
             <div class="row-2">
               <div class="field">
                 <label for="petName">Ime на милениче <span class="req">*</span></label>
-                <input id="petName" type="text" formControlName="name" placeholder="Макс">
-                <app-field-error [control]="ctrl('petInfo','name')"/>
+                <input id="petName" type="text" formControlName="name" placeholder="Макс" />
+                @if (ctrl('petInfo', 'name')?.invalid && ctrl('petInfo', 'name')?.touched) {
+                  <span class="err">Ова поле е задолжително</span>
+                }
               </div>
               <div class="field">
                 <label for="breed">Раса <span class="req">*</span></label>
-                <input id="breed" type="text" formControlName="breed"
-                       placeholder="Лабрадор ретривер">
-                <app-field-error [control]="ctrl('petInfo','breed')"/>
+                <input
+                  id="breed"
+                  type="text"
+                  formControlName="breed"
+                  placeholder="Лабрадор ретривер"
+                />
+                @if (ctrl('petInfo', 'breed')?.invalid && ctrl('petInfo', 'breed')?.touched) {
+                  <span class="err">Ова поле е задолжително</span>
+                }
               </div>
             </div>
 
             <div class="row-2">
               <div class="field">
-                <label for="dob">Датум на раѓање <span class="req">*</span></label>
-                <input id="dob" type="date" formControlName="dateOfBirth">
-                <app-field-error [control]="ctrl('petInfo','dateOfBirth')"/>
+                <label for="dob">Датум на раѓање</label>
+                <input id="dob" type="date" formControlName="dateOfBirth" />
               </div>
               <div class="field">
                 <label for="weight">Тежина (кг)</label>
-                <input id="weight" type="number" formControlName="weight"
-                       placeholder="15" min="0.5" max="100" step="0.5">
-                <app-field-error [control]="ctrl('petInfo','weight')"/>
+                <input
+                  id="weight"
+                  type="number"
+                  formControlName="weight"
+                  placeholder="15"
+                  min="0.5"
+                  max="100"
+                  step="0.5"
+                />
               </div>
             </div>
 
             <div class="field">
               <label>Пол <span class="req">*</span></label>
               <div class="radio-group" role="radiogroup">
-                @for (opt of ['Машко','Женско']; track opt) {
+                @for (opt of ['Машко', 'Женско']; track opt) {
                   <label class="radio-card">
-                    <input type="radio" [value]="opt" formControlName="gender">
+                    <input type="radio" [value]="opt" formControlName="gender" />
                     <span>{{ opt }}</span>
                   </label>
                 }
               </div>
-              <app-field-error [control]="ctrl('petInfo','gender')"/>
+              @if (ctrl('petInfo', 'gender')?.invalid && ctrl('petInfo', 'gender')?.touched) {
+                <span class="err">Изберете пол</span>
+              }
             </div>
 
             <div class="row-2">
               <div class="field">
-                <label>Стерилизирано <span class="req">*</span></label>
+                <label>Стерилизирано</label>
                 <div class="radio-group" role="radiogroup">
-                  <label class="radio-card"><input type="radio" [value]="true"  formControlName="neutered"><span>Да</span></label>
-                  <label class="radio-card"><input type="radio" [value]="false" formControlName="neutered"><span>Не</span></label>
+                  <label class="radio-card"
+                    ><input type="radio" [value]="true" formControlName="neutered" /><span
+                      >Да</span
+                    ></label
+                  >
+                  <label class="radio-card"
+                    ><input type="radio" [value]="false" formControlName="neutered" /><span
+                      >Не</span
+                    ></label
+                  >
                 </div>
-                <app-field-error [control]="ctrl('petInfo','neutered')"/>
               </div>
               <div class="field">
-                <label>Чипирано <span class="req">*</span></label>
+                <label>Чипирано</label>
                 <div class="radio-group" role="radiogroup">
-                  <label class="radio-card"><input type="radio" [value]="true"  formControlName="microchipped"><span>Да</span></label>
-                  <label class="radio-card"><input type="radio" [value]="false" formControlName="microchipped"><span>Не</span></label>
+                  <label class="radio-card"
+                    ><input type="radio" [value]="true" formControlName="microchipped" /><span
+                      >Да</span
+                    ></label
+                  >
+                  <label class="radio-card"
+                    ><input type="radio" [value]="false" formControlName="microchipped" /><span
+                      >Не</span
+                    ></label
+                  >
                 </div>
-                <app-field-error [control]="ctrl('petInfo','microchipped')"/>
               </div>
-            </div>
-
-            <div class="field">
-              <label for="ownership">Колку долго го поседувате? <span class="req">*</span></label>
-              <select id="ownership" formControlName="ownershipDuration">
-                <option value="">– Изберете –</option>
-                @for (opt of ownershipDurations; track opt) {
-                  <option [value]="opt">{{ opt }}</option>
-                }
-              </select>
-              <app-field-error [control]="ctrl('petInfo','ownershipDuration')"/>
-            </div>
-          </div>
-        }
-
-        <!-- ──────────────────────────────────────
-             STEP 3 – Здравствени информации
-             ────────────────────────────────────── -->
-        @if (stepIndex === 2) {
-          <div class="step-card" formGroupName="healthInfo">
-            <div class="step-card-header">
-              <h2>Здравствени информации</h2>
-              <span class="step-badge">Чекор 3 / 5</span>
-            </div>
-
-            <div class="field">
-              <label>Дали кучето е редовно вакцинирано и прочистувано? <span class="req">*</span></label>
-              <div class="radio-group" role="radiogroup">
-                <label class="radio-card"><input type="radio" [value]="true"  formControlName="vaccinated"><span>Да</span></label>
-                <label class="radio-card"><input type="radio" [value]="false" formControlName="vaccinated"><span>Не</span></label>
-              </div>
-              <app-field-error [control]="ctrl('healthInfo','vaccinated')"/>
-            </div>
-
-            @if (ctrl('healthInfo','vaccinated')?.value === false) {
-              <div class="field">
-                <label for="vacNote">Објаснете зошто</label>
-                <textarea id="vacNote" formControlName="vaccinationNote"
-                          rows="3" placeholder="Причина..."></textarea>
-              </div>
-            }
-
-            <div class="row-2">
-              <div class="field">
-                <label for="vetName">Ветеринар – ime и телефон <span class="req">*</span></label>
-                <input id="vetName" type="text" formControlName="vetName"
-                       placeholder="Д-р Иван – 02 123 456">
-                <app-field-error [control]="ctrl('healthInfo','vetName')"/>
-              </div>
-              <div class="field">
-                <label for="clinicName">Клиника <span class="req">*</span></label>
-                <input id="clinicName" type="text" formControlName="clinicName"
-                       placeholder="Vet Clinic Скопје">
-                <app-field-error [control]="ctrl('healthInfo','clinicName')"/>
-              </div>
-            </div>
-
-            <div class="divider"></div>
-            <h3 class="section-label">Здравствена историја</h3>
-
-            <div class="field">
-              <label for="medCond">Медицински состојби</label>
-              <textarea id="medCond" formControlName="medicalConditions" rows="2"
-                        placeholder="Дијабет, цревни проблеми... или оставете празно"></textarea>
             </div>
 
             <div class="row-2">
               <div class="field">
                 <label for="allergies">Алергии</label>
-                <input id="allergies" type="text" formControlName="allergies"
-                       placeholder="Млечко, жито...">
+                <input
+                  id="allergies"
+                  type="text"
+                  formControlName="allergies"
+                  placeholder="Пилешко, жито..."
+                />
               </div>
               <div class="field">
-                <label for="physLim">Физички ограничувања</label>
-                <input id="physLim" type="text" formControlName="physicalLimitations"
-                       placeholder="Дисплазија на колк...">
-              </div>
-            </div>
-
-            <div class="row-2">
-              <div class="field">
-                <label>Превенција од болви / крлежи <span class="req">*</span></label>
-                <div class="radio-group" role="radiogroup">
-                  <label class="radio-card"><input type="radio" [value]="true"  formControlName="fleaTreatment"><span>Да</span></label>
-                  <label class="radio-card"><input type="radio" [value]="false" formControlName="fleaTreatment"><span>Не</span></label>
-                </div>
-                <app-field-error [control]="ctrl('healthInfo','fleaTreatment')"/>
-              </div>
-              <div class="field">
-                <label>Превенција на цревни црви <span class="req">*</span></label>
-                <div class="radio-group" role="radiogroup">
-                  <label class="radio-card"><input type="radio" [value]="true"  formControlName="heartwormTreatment"><span>Да</span></label>
-                  <label class="radio-card"><input type="radio" [value]="false" formControlName="heartwormTreatment"><span>Не</span></label>
-                </div>
-                <app-field-error [control]="ctrl('healthInfo','heartwormTreatment')"/>
+                <label for="medCond">Медицински состојби</label>
+                <input
+                  id="medCond"
+                  type="text"
+                  formControlName="medicalConditions"
+                  placeholder="Дијабет..."
+                />
               </div>
             </div>
           </div>
         }
 
-        <!-- ──────────────────────────────────────
-             STEP 4 – Однесување и навики
-             ────────────────────────────────────── -->
-        @if (stepIndex === 3) {
-          <div class="step-card" formGroupName="behaviorInfo">
-            <div class="step-card-header">
-              <h2>Однесување и навики</h2>
-              <span class="step-badge">Чекор 4 / 5</span>
-            </div>
-
-            <div class="field">
-              <label for="prevTraining">Претходна обука / тренинг</label>
-              <textarea id="prevTraining" formControlName="previousTraining" rows="2"
-                        placeholder="Основни команди, специјализирана обука..."></textarea>
-            </div>
-
-            <div class="row-2">
-              <div class="field">
-                <label>Претходни хотелски престои <span class="req">*</span></label>
-                <div class="radio-group" role="radiogroup">
-                  <label class="radio-card"><input type="radio" [value]="true"  formControlName="previousHotelStay"><span>Да</span></label>
-                  <label class="radio-card"><input type="radio" [value]="false" formControlName="previousHotelStay"><span>Не</span></label>
-                </div>
-                <app-field-error [control]="ctrl('behaviorInfo','previousHotelStay')"/>
-              </div>
-              <div class="field">
-                <label>Обучено да стои само во соба? <span class="req">*</span></label>
-                <div class="radio-group" role="radiogroup">
-                  <label class="radio-card"><input type="radio" [value]="true"  formControlName="trainedToStayAlone"><span>Да</span></label>
-                  <label class="radio-card"><input type="radio" [value]="false" formControlName="trainedToStayAlone"><span>Не</span></label>
-                </div>
-                <app-field-error [control]="ctrl('behaviorInfo','trainedToStayAlone')"/>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="reaction">Реакција кон други животни <span class="req">*</span></label>
-              <select id="reaction" formControlName="reactionToAnimals">
-                <option value="">– Изберете –</option>
-                @for (opt of animalReactions; track opt) {
-                  <option [value]="opt">{{ opt }}</option>
-                }
-              </select>
-              <app-field-error [control]="ctrl('behaviorInfo','reactionToAnimals')"/>
-            </div>
-
-            <div class="row-2">
-              <div class="field">
-                <label for="reward">Омилена награда</label>
-                <input id="reward" type="text" formControlName="favoriteReward"
-                       placeholder="Сурво месо, топче...">
-              </div>
-              <div class="field">
-                <label for="toys">Омилени играчки</label>
-                <input id="toys" type="text" formControlName="favoriteToys"
-                       placeholder="Топче, канап...">
-              </div>
-            </div>
-
-            <div class="divider"></div>
-            <h3 class="section-label">Предизвици во однесувањето</h3>
-            <p class="field-hint">Означете сè што важи за вашето куче</p>
-
-            <div class="checkbox-grid">
-              @for (challenge of behaviorChallenges; track challenge) {
-                <label class="checkbox-card"
-                       [class.checked]="isChallengeChecked(challenge)">
-                  <input type="checkbox"
-                         [checked]="isChallengeChecked(challenge)"
-                         (change)="toggleChallenge(challenge)"
-                         [attr.aria-label]="challenge">
-                  <span>{{ challenge }}</span>
-                </label>
-              }
-            </div>
-
-            <div class="field" style="margin-top: 1rem">
-              <label for="notes">Дополнителни забелешки</label>
-              <textarea id="notes" formControlName="additionalNotes" rows="3"
-                        placeholder="Сè друго корисно за тимот..."></textarea>
-            </div>
-          </div>
-        }
-
-        <!-- ──────────────────────────────────────
-             STEP 5 – Датуми, престој, согласност
-             ────────────────────────────────────── -->
-        @if (stepIndex === 4) {
+        <!-- ЧЕКОР 3 — Престој -->
+        @if (activeStep() === 3) {
           <div class="step-card" formGroupName="stayInfo">
             <div class="step-card-header">
               <h2>Датуми на престој и хранење</h2>
-              <span class="step-badge">Чекор 5 / 5</span>
+              <span class="step-badge">Чекор 3 / 3</span>
             </div>
 
-            <h3 class="section-label">Датуми</h3>
             <div class="row-2">
               <div class="field">
                 <label for="checkIn">Пристигнување <span class="req">*</span></label>
-                <input id="checkIn" type="datetime-local" formControlName="checkInDateTime">
-                <app-field-error [control]="ctrl('stayInfo','checkInDateTime')"/>
+                <input id="checkIn" type="datetime-local" formControlName="checkInDateTime" />
+                @if (
+                  ctrl('stayInfo', 'checkInDateTime')?.invalid &&
+                  ctrl('stayInfo', 'checkInDateTime')?.touched
+                ) {
+                  <span class="err">Ова поле е задолжително</span>
+                }
               </div>
               <div class="field">
-                <label for="checkOut">Заминување <span class="req">*</span></label>
-                <input id="checkOut" type="datetime-local" formControlName="checkOutDateTime">
-                <app-field-error [control]="ctrl('stayInfo','checkOutDateTime')"/>
+                <label for="checkOut">Заминување</label>
+                <input id="checkOut" type="datetime-local" formControlName="checkOutDateTime" />
               </div>
             </div>
-
-            @if (form.get('stayInfo')?.errors?.['checkOutBeforeCheckIn']) {
-              <p class="cross-error">
-                Датумот на заминување мора да биде после пристигнувањето.
-              </p>
-            }
 
             <div class="divider"></div>
             <h3 class="section-label">Хранење</h3>
 
-            <div class="field">
-              <label for="feedSched">Распоред на хранење <span class="req">*</span></label>
-              <select id="feedSched" formControlName="feedingSchedule">
-                <option value="">– Изберете –</option>
-                @for (opt of feedingSchedules; track opt) {
-                  <option [value]="opt">{{ opt }}</option>
-                }
-              </select>
-              <app-field-error [control]="ctrl('stayInfo','feedingSchedule')"/>
-            </div>
-
-            <div class="field">
-              <label for="feedInstr">Упатства за хранење (количина, час)</label>
-              <textarea id="feedInstr" formControlName="feedingInstructions" rows="2"
-                        placeholder="Пр: 200г сурво суво во 08:00, 200г вечерта во 18:00">
-              </textarea>
-            </div>
-
             <div class="row-2">
               <div class="field">
-                <label for="foodBrand">Префериран марка / вид на храна</label>
-                <input id="foodBrand" type="text" formControlName="foodBrand"
-                       placeholder="Royal Canin Medium Adult...">
+                <label for="feedSched">Распоред на хранење</label>
+                <select id="feedSched" formControlName="feedingSchedule">
+                  <option value="">— Изберете —</option>
+                  @for (opt of feedingSchedules; track opt) {
+                    <option [value]="opt">{{ opt }}</option>
+                  }
+                </select>
               </div>
               <div class="field">
-                <label>Дали прима тритови? <span class="req">*</span></label>
-                <div class="radio-group" role="radiogroup">
-                  <label class="radio-card"><input type="radio" [value]="true"  formControlName="acceptsTreats"><span>Да</span></label>
-                  <label class="radio-card"><input type="radio" [value]="false" formControlName="acceptsTreats"><span>Не</span></label>
-                </div>
-                <app-field-error [control]="ctrl('stayInfo','acceptsTreats')"/>
+                <label for="foodBrand">Марка на храна</label>
+                <input
+                  id="foodBrand"
+                  type="text"
+                  formControlName="foodBrand"
+                  placeholder="Royal Canin..."
+                />
               </div>
             </div>
 
             <div class="field">
-              <label for="foodAllerg">Храна на која е алергично / забрана</label>
-              <input id="foodAllerg" type="text" formControlName="foodAllergies"
-                     placeholder="Млечко, жито...">
+              <label for="additionalNotes">Дополнителни забелешки</label>
+              <textarea
+                id="additionalNotes"
+                formControlName="additionalNotes"
+                rows="3"
+                placeholder="Навики, омилени играчки, посебни барања..."
+              ></textarea>
             </div>
 
             <div class="divider"></div>
-            <h3 class="section-label">Согласност</h3>
 
-            <label class="terms-check" [class.error]="ctrl('stayInfo','termsAccepted')?.invalid
-                                                       && ctrl('stayInfo','termsAccepted')?.touched">
-              <input type="checkbox" formControlName="termsAccepted">
-              <span>
-                Ги прифаќам
-                <a href="#" target="_blank" rel="noopener noreferrer">условите за користење</a>
-                и правилата на PawCare MK
-              </span>
+            <label
+              class="terms-check"
+              [class.error]="
+                ctrl('stayInfo', 'termsAccepted')?.invalid &&
+                ctrl('stayInfo', 'termsAccepted')?.touched
+              "
+            >
+              <input type="checkbox" formControlName="termsAccepted" />
+              <span>Ги прифаќам условите за користење на PawPal</span>
             </label>
-            <app-field-error [control]="ctrl('stayInfo','termsAccepted')"/>
+            @if (
+              ctrl('stayInfo', 'termsAccepted')?.invalid &&
+              ctrl('stayInfo', 'termsAccepted')?.touched
+            ) {
+              <span class="err">Мора да ги прифатите условите</span>
+            }
           </div>
         }
 
-        <!-- ── Navigation actions ── -->
+        <!-- Навигација -->
         <div class="form-actions">
-          <button type="button" class="btn-outline"
-                  (click)="prev()"
-                  [disabled]="svc.isFirstStep()"
-                  [attr.aria-hidden]="svc.isFirstStep()">
+          <button type="button" class="btn-outline" (click)="prev()" [disabled]="isFirst">
             ← Назад
           </button>
 
-          <span class="step-counter" aria-live="polite">
-            Чекор {{ stepIndex + 1 }} / 5
-          </span>
+          <span class="step-counter" aria-live="polite"> Чекор {{ activeStep() }} / 3 </span>
 
-          @if (!svc.isLastStep()) {
-            <button type="button" class="btn-primary" (click)="next()">
-              Следно →
-            </button>
+          @if (!isLast) {
+            <button type="button" class="btn-primary" (click)="next()">Следно →</button>
           } @else {
-            <button type="submit" class="btn-primary"
-                    [disabled]="isSubmitting()">
-              @if (isSubmitting()) {
+            <button type="submit" class="btn-primary" [disabled]="submitStatus() === 'loading'">
+              @if (submitStatus() === 'loading') {
                 <span class="spinner" aria-hidden="true"></span>
                 Се поднесува...
               } @else {
@@ -518,9 +335,7 @@
             </button>
           }
         </div>
-
       </form>
     </div>
   }
-
 </section>
