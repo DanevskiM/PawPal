@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600&display=swap');
+
+.klienti-section {
+  background: #F5F0E8;
+  padding: 6rem 2rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.klienti-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.klienti-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 400;
+  color: #1B2A4A;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 1px;
+    background: #B8976A;
+    margin: 16px auto 0;
+  }
+}
+
+.review-slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.review-card {
+  background: #1B2A4A;
+  border-radius: 4px;
+  padding: 3rem 3.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.review-stars {
+  color: #B8976A;
+  font-size: 1.2rem;
+  letter-spacing: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.review-quote {
+  font-size: 1.4rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 400;
+  color: white;
+  line-height: 1.4;
+  margin-bottom: 1.2rem;
+}
+
+.review-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.85;
+  margin-bottom: 2rem;
+}
+
+.review-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(184,151,106,0.3);
+  padding-top: 1.2rem;
+}
+
+.review-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.review-location {
+  font-size: 11px;
+  color: #B8976A;
+  background: rgba(184,151,106,0.15);
+  border: 1px solid rgba(184,151,106,0.4);
+  padding: 5px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.review-dots {
+  display: flex;
+  gap: 10px;
+  margin-top: 2rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #D4C9B5;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+
+  &.active {
+    background: #B8976A;
+    transform: scale(1.2);
+  }
+
+  &:hover { background: #B8976A; }
+}
+
+@media (max-width: 600px) {
+  .klienti-section { padding: 4rem 1rem; }
+  .review-card { padding: 2rem 1.5rem; }
+  .review-quote { font-size: 1.1rem; }
+  .review-footer { flex-direction: column; align-items: flex-start; gap: 10px; }
+}

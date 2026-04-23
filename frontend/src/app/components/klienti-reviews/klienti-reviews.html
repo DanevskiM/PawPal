@@ -1,0 +1,30 @@
+<section class="klienti-section">
+  <div class="klienti-container">
+
+    <h2 class="klienti-title">Од нашите клиенти</h2>
+
+    <div class="review-slider">
+      @for (review of reviews; track $index) {
+        @if (activeReview === $index) {
+          <div class="review-card">
+            <div class="review-stars">★ ★ ★ ★ ★</div>
+            <p class="review-quote">{{ review.quote }}</p>
+            <p class="review-desc">{{ review.text }}</p>
+            <div class="review-footer">
+              <span class="review-name">{{ review.name }}</span>
+              <span class="review-location">{{ review.location }}</span>
+            </div>
+          </div>
+        }
+      }
+
+      <div class="review-dots">
+        @for (review of reviews; track $index) {
+          <span class="dot" [class.active]="activeReview === $index"
+                (click)="setReview($index)"></span>
+        }
+      </div>
+    </div>
+
+  </div>
+</section>
