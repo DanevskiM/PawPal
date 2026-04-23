@@ -101,19 +101,38 @@
 <section class="grooming-faq">
   <h2>Најчесто поставувани прашања</h2>
   <div class="faq-list">
-    @for (faq of faqs; track $index)
-    {
-        <div class="faq-item" [class.open]="faq.open" (click)="toggleFaq($index)">
-            <div class="faq-question">
-             <span>{{ faq.question }}</span>
-          <span class="faq-icon">{{ faq.open ? '−' : '+' }}</span>
+    <div class="faq-col">
+      @for (faq of faqs.slice(0, 4); track faq.question) {
+        <div class="faq-item" [class.open]="faq.open"
+             (click)="toggleFaq($index)">
+          <div class="faq-question">
+            <span>{{ faq.question }}</span>
+            <span class="faq-icon">{{ faq.open ? '−' : '+' }}</span>
+          </div>
+          @if (faq.open) {
+            <div class="faq-answer">
+              <p>{{ faq.answer }}</p>
+            </div>
+          }
         </div>
-        @if (faq.open) {
-        <div class="faq-answer">
-            <p>{{faq.answer}}</p>
+      }
+    </div>
+
+    <div class="faq-col">
+      @for (faq of faqs.slice(4); track faq.question) {
+        <div class="faq-item" [class.open]="faq.open"
+             (click)="toggleFaq($index + 4)">
+          <div class="faq-question">
+            <span>{{ faq.question }}</span>
+            <span class="faq-icon">{{ faq.open ? '−' : '+' }}</span>
+          </div>
+          @if (faq.open) {
+            <div class="faq-answer">
+              <p>{{ faq.answer }}</p>
+            </div>
+          }
         </div>
-        }
-        </div>
-    }
+      }
+    </div>
   </div>
 </section>
