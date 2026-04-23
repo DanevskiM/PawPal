@@ -56,7 +56,7 @@ export const routes: Routes = [
   {
     path: 'registracija',
     component: RegistrationFormComponent,
-    title: 'Регистрација – PawCare MK',
+    title: 'Регистрација – PawPal MK',
   },
 
   { path: 'prestoj', redirectTo: 'registracija', pathMatch: 'full' },

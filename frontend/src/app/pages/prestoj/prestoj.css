@@ -1,31 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600&display=swap');
 .prestoj-container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 2rem;
+  background-color: #F5F0E8;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .hero {
   text-align: center;
-  padding: 3rem 0 2rem;
+  padding: 4rem 2rem 3rem;
 }
 
 .badge {
-  background: #E1F5EE;
-  color: #0F6E56;
-  padding: 4px 14px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
+  display: inline-block;
+  background: transparent;
+  color: #B8976A;
+  padding: 5px 14px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  border: 1px solid rgba(184,151,106,0.6);
+  border-radius: 2px;
+  margin-bottom: 1.2rem;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .hero h1 {
-  font-size: 2rem;
-  margin: 1rem 0 0.5rem;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: #1B2A4A;
+  font-family: 'Playfair Display', Georgia, serif;
+  margin: 0 0 0.8rem;
+  line-height: 1.25;
 }
 
 .hero p {
-  color: #666;
-  font-size: 15px;
+  color: #5C5245;
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 520px;
+  margin: 0 auto;
 }
 
 .packages {
@@ -33,170 +49,266 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin-top: 2rem;
+  align-items: stretch;
 }
 
 .card {
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 1.5rem;
+  background: #FDFAF5;
+  border: 1px solid #D4C9B5;
+  border-top: 3px solid #B8976A;
+  border-radius: 4px;
+  padding: 2rem;
+  transition: all 0.2s;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(27,42,74,0.1);
+}
+
+.card.selected {
+  border: 1px solid #B8976A;
+  border-top: 3px solid #B8976A;
+  box-shadow: 0 0 0 3px rgba(184,151,106,0.25);
 }
 
 .card.featured {
-  border: 2px solid #1D9E75;
+  border: 1px solid #D4C9B5;
+  border-top: 3px solid #1B2A4A;
+}
+
+.card.featured.selected {
+  border: 1px solid #1B2A4A;
+  border-top: 3px solid #1B2A4A;
+  box-shadow: 0 0 0 3px rgba(27,42,74,0.15);
 }
 
 .badge-popular {
-  background: #E1F5EE;
-  color: #0F6E56;
-  font-size: 12px;
-  font-weight: 500;
-  padding: 4px 12px;
-  border-radius: 20px;
   display: inline-block;
-  margin-bottom: 8px;
+  background: transparent;
+  color: #1B2A4A;
+  padding: 4px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 1px solid rgba(27,42,74,0.4);
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .card h2 {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #1B2A4A;
   margin-bottom: 0.5rem;
 }
 
 .price {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #1D9E75;
-  margin: 0.8rem 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1B2A4A;
+  font-family: 'Playfair Display', Georgia, serif;
+  margin: 0.6rem 0 1rem;
 }
 
 .price span {
-  font-size: 0.9rem;
-  color: #999;
-  font-weight: 400;
+  font-size: 13px;
+  color: #B8976A;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
 }
 
 ul {
   list-style: none;
   padding: 0;
-  margin: 1rem 0 1.5rem;
+  margin: 0 0 1.5rem;
+  flex: 1;
 }
 
 ul li {
-  padding: 5px 0;
-  font-size: 14px;
-  color: #555;
+  padding: 6px 0;
+  font-size: 13px;
+  color: #5C5245;
+  line-height: 1.6;
+  border-bottom: 1px solid #EDE8DC;
+}
+
+ul li:last-child {
+  border-bottom: none;
 }
 
 ul li::before {
-  content: '✓ ';
-  color: #1D9E75;
+  content: '— ';
+  color: #B8976A;
+  font-weight: 600;
+}
+
+.card button {
+  margin-top: auto;
 }
 
 .btn-primary {
   width: 100%;
-  padding: 10px;
-  background: #1D9E75;
+  padding: 11px;
+  background: #1B2A4A;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: #B8976A;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .btn-outline {
   width: 100%;
-  padding: 10px;
-  background: white;
-  color: #1D9E75;
-  border: 1px solid #1D9E75;
-  border-radius: 8px;
+  padding: 11px;
+  background: transparent;
+  color: #B8976A;
+  border: 1.5px solid #B8976A;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.2s;
+}
+
+.btn-outline:hover {
+  background: #B8976A;
+  color: white;
+}
+
+.btn-outline:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .rezervacija {
-  margin-top: 3rem;
-  background: #f9f9f9;
-  border-radius: 12px;
-  padding: 2rem;
+  max-width: 1100px;
+  margin: 2rem auto 0;
+  padding: 0 0 4rem;
 }
 
 .rezervacija h2 {
+  font-size: 1.8rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #1B2A4A;
   margin-bottom: 1.5rem;
-  font-size: 1.3rem;
+  position: relative;
+  padding-bottom: 14px;
 }
 
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+.rezervacija h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: #B8976A;
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+.summary-box {
+  background: #FDFAF5;
+  border: 1px solid #D4C9B5;
+  border-left: 3px solid #B8976A;
+  border-radius: 4px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
 }
 
-.form-group.full {
-  grid-column: span 2;
-}
-
-label {
-  font-size: 13px;
-  color: #555;
-}
-
-input, select, textarea {
-  padding: 8px 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+.summary-box p {
   font-size: 14px;
+  color: #5C5245;
+  padding: 6px 0;
+  border-bottom: 1px solid #EDE8DC;
+  margin: 0;
+  line-height: 1.6;
 }
 
-textarea {
-  height: 80px;
-  resize: none;
+.summary-box p:last-child {
+  border-bottom: none;
+}
+
+.summary-box strong {
+  color: #1B2A4A;
+  font-weight: 600;
 }
 
 .full-btn {
+  margin-top: 1rem;
+  padding: 13px;
+  font-size: 12px;
+}
+
+.payment-choice-box {
+  background: #FDFAF5;
+  border: 1px solid #D4C9B5;
+  border-radius: 4px;
+  padding: 1.5rem 2rem;
   margin-top: 1.5rem;
-  padding: 12px;
-  font-size: 15px;
 }
 
-.card.selected {
-  box-shadow: 0 0 0 3px #1D9E75;
-}
-.card.selected {
-  border: 2px solid #1D9E75;
-  box-shadow: 0 0 0 3px #1D9E7530;
-}
-
-.card.featured {
-  border: 1px solid #ddd;
+.payment-choice-box p {
+  font-size: 14px;
+  color: #5C5245;
+  margin-bottom: 1rem;
+  line-height: 1.7;
 }
 
-.card.featured.selected {
-  border: 2px solid #1D9E75;
-  box-shadow: 0 0 0 3px #1D9E7530;
+.payment-actions {
+  display: flex;
+  gap: 1rem;
 }
-.prestoj-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem;
-  background-color: #F8F5EF;
-  min-height: 100vh;
-}
-.card {
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 1.5rem;
-  background-color: #FFFFFF;
+
+.payment-actions .btn-primary,
+.payment-actions .btn-outline {
+  width: auto;
+  padding: 11px 28px;
 }
 
 .error-text {
-  color: #c62828;
+  color: #8B2020;
   margin-top: 12px;
-  font-size: 14px;
+  font-size: 13px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .packages {
+    grid-template-columns: 1fr;
+  }
+
+  .rezervacija {
+    padding: 0 1rem 3rem;
+  }
+
+  .payment-actions {
+    flex-direction: column;
+  }
+
+  .hero {
+    padding: 3rem 1rem 2rem;
+  }
 }
