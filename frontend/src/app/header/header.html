@@ -1,47 +1,65 @@
 <section class="header-section">
-  <div class="top-bar">
-    <div class="top-bar-inner">
-      <div class="top-bar-left">
-        <span>🐾 Добредојдовте во PawPal</span>
-      </div>
-      <div class="top-bar-right">
-        <a href="tel:+38970000000">📞 +389 70 000 000</a>
-        <span class="divider">|</span>
-        <a href="https://www.google.com/maps/place/%D0%9C%D0%A6%D0%90/@41.9947613,21.4164126,17z">
-          📍 Митрополит Теодосиј Гологанов 40, Скопје
-        </a>
-      </div>
-    </div>
-  </div>
-
   <nav class="navbar">
     <div class="nav-inner">
-      <a routerLink="/" class="logo-link">
-        <img src="assets/logo.png" alt="PawPal logo" width="60px" height="60px" />
-        <span class="logo-text">PawPal</span>
-      </a>
-      <ul class="header-list">
-        <li>
-          <a
-            routerLink="/"
-            routerLinkActive="active-link"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >Почетна</a
-          >
-        </li>
-        <li><a routerLink="/prestoj" routerLinkActive="active-link">Престој</a></li>
-        <li><a routerLink="/grooming" routerLinkActive="active-link">Груминг</a></li>
-        <li class="dropdown">
-  <a routerLink="/uslugi" routerLinkActive="active-link">Услуги</a>
-  <ul class="dropdown-menu">
-    <li><a routerLink="/uslugi/individualni-treninzi">Индивидуални тренинзи</a></li>
-    <li><a routerLink="/uslugi/transport">Транспорт</a></li>
-    <li><a routerLink="/uslugi/rodendenski-nastani">Роденденски настани</a></li>
-  </ul>
-</li>
-        <li><a routerLink="/za-nas" routerLinkActive="active-link">За нас</a></li>
-        <li><a routerLink="/kontakt" class="kontakt-btn">Контакт</a></li>
-      </ul>
+
+      <!-- Лого -->
+      <div class="logo-wrap">
+        <img src="assets/logo-dog.webp" alt="PawPal" class="logo-img"/>
+        <div class="logo-text-wrap">
+          <span class="logo-brand">PawPal</span>
+          <span class="logo-tagline">Premium Pet Care · Скопје</span>
+        </div>
+      </div>
+
+      <!-- Desktop десно -->
+      <div class="nav-right">
+        <div class="nav-contact">
+          <a href="tel:+38970000000">📞 +389 70 000 000</a>
+          <span class="nav-divider">|</span>
+          <a href="https://www.google.com/maps">📍 Скопје</a>
+        </div>
+        <ul class="header-list">
+          <li><a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Почетна</a></li>
+          <li><a routerLink="/prestoj" routerLinkActive="active-link" (click)="closeMenu()">Престој</a></li>
+          <li><a routerLink="/grooming" routerLinkActive="active-link" (click)="closeMenu()">Груминг</a></li>
+          <li class="dropdown">
+            <a routerLink="/uslugi" routerLinkActive="active-link">Услуги</a>
+            <ul class="dropdown-menu">
+              <li><a routerLink="/uslugi/individualni-treninzi" (click)="closeMenu()">Индивидуални тренинзи</a></li>
+              <li><a routerLink="/uslugi/transport" (click)="closeMenu()">Транспорт</a></li>
+              <li><a routerLink="/uslugi/rodendenski-nastani" (click)="closeMenu()">Роденденски настани</a></li>
+            </ul>
+          </li>
+          <li><a routerLink="/za-nas" routerLinkActive="active-link" (click)="closeMenu()">За нас</a></li>
+          <li><a routerLink="/kontakt" class="kontakt-btn" (click)="closeMenu()">Контакт</a></li>
+        </ul>
+      </div>
+
+      <!-- Hamburger копче -->
+      <button class="hamburger" (click)="toggleMenu()" [class.open]="isMenuOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
     </div>
+
+    <!-- Мобилен мени -->
+    @if (isMenuOpen) {
+      <div class="mobile-menu">
+        <ul>
+          <li><a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Почетна</a></li>
+          <li><a routerLink="/prestoj" routerLinkActive="active-link" (click)="closeMenu()">Престој</a></li>
+          <li><a routerLink="/grooming" routerLinkActive="active-link" (click)="closeMenu()">Груминг</a></li>
+          <li><a routerLink="/uslugi" routerLinkActive="active-link" (click)="closeMenu()">Услуги</a></li>
+          <li><a routerLink="/uslugi/individualni-treninzi" (click)="closeMenu()">— Индивидуални тренинзи</a></li>
+          <li><a routerLink="/uslugi/transport" (click)="closeMenu()">— Транспорт</a></li>
+          <li><a routerLink="/uslugi/rodendenski-nastani" (click)="closeMenu()">— Роденденски настани</a></li>
+          <li><a routerLink="/za-nas" routerLinkActive="active-link" (click)="closeMenu()">За нас</a></li>
+          <li><a routerLink="/kontakt" (click)="closeMenu()">Контакт</a></li>
+        </ul>
+      </div>
+    }
+
   </nav>
 </section>

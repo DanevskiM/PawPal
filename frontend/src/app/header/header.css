@@ -1,58 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600&display=swap');
+
 .header-section {
-  background-color: #F8F5EF;
+  background-color: #EDE8DC;
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
-/* TOP BAR */
-.top-bar {
-  background-color: #2C5F3E;
-  padding: 7px 0;
-}
-
-.top-bar-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.top-bar-left span {
-  color: #c8e6c9;
-  font-size: 13px;
-  letter-spacing: 0.5px;
-}
-
-.top-bar-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.top-bar-right a {
-  color: #c8e6c9;
-  text-decoration: none;
-  font-size: 13px;
-  transition: color 0.2s;
-}
-
-.top-bar-right a:hover {
-  color: #ffffff;
-}
-
-.divider {
-  color: #4A7C59;
-  font-size: 13px;
-}
-
-/* NAVBAR */
 .navbar {
   padding: 0 2rem;
-  border-bottom: 1px solid #e8dccd;
+  background-color: #EDE8DC;
+  border-bottom: 2px solid #B8976A;
 }
 
 .nav-inner {
@@ -61,40 +20,99 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: 90px;
 }
 
-.logo-link {
+/* Лого */
+.logo-wrap {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 3px;
   text-decoration: none;
 }
 
-.logo-text {
-  font-size: 22px;
-  font-weight: 700;
-  color: #2C5F3E;
-  letter-spacing: 0.5px;
-  font-family: Georgia, serif;
+.logo-img {
+  height: 90px !important;
+  width: auto !important;
+  max-height: none !important;
+  max-width: none !important;
+  object-fit: contain;
 }
 
+.logo-text-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-brand {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1B2A4A;
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.logo-tagline {
+  font-size: 9px;
+  color: #B8976A;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 4px;
+}
+
+/* Десно — контакт + линкови */
+.nav-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.nav-contact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  a {
+    color: #B8976A;
+    text-decoration: none;
+    font-size: 11px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+
+    &:hover { color: #1B2A4A; }
+  }
+}
+
+.nav-divider {
+  color: rgba(184,151,106,0.4);
+  font-size: 12px;
+}
+
+/* Линкови */
 .header-list {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 0;
   margin: 0;
-  padding: 0;
+  padding: 7px;
 }
 
 .header-list li a {
   text-decoration: none;
-  color: #3a3a3a;
+  color: #1B2A4A;
   display: flex;
   align-items: center;
-  padding: 22px 14px;
-  font-size: 15px;
-  font-weight: 500;
+  padding: 10px 25px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   position: relative;
   transition: color 0.2s;
 }
@@ -102,50 +120,57 @@
 .header-list li a::after {
   content: "";
   position: absolute;
-  left: 14px;
-  bottom: 14px;
+  left: 12px;
+  bottom: 0;
   width: 0;
   height: 2px;
-  background: #2C5F3E;
+  background: #B8976A;
   transition: width 0.3s ease;
   border-radius: 2px;
 }
 
 .header-list li a:hover {
-  color: #2C5F3E;
+  color: #B8976A;
 }
 
 .header-list li a:hover::after {
-  width: calc(100% - 28px);
+  width: calc(100% - 24px);
 }
 
 .active-link {
-  color: #2C5F3E !important;
+  color: #B8976A !important;
   font-weight: 600 !important;
 }
 
 .active-link::after {
-  width: calc(100% - 28px) !important;
+  width: calc(100% - 24px) !important;
+  background: #B8976A !important;
 }
 
-/* КОНТАКТ КОПЧЕ */
+/* Контакт копче */
 .kontakt-btn {
-  background-color: #2C5F3E !important;
-  color: #ffffff !important;
-  border-radius: 8px !important;
-  padding: 10px 20px !important;
+  background-color: #1B2A4A !important;
+  color: #B8976A !important;
+  border-radius: 4px !important;
+  padding: 8px 16px !important;
   font-weight: 600 !important;
-  transition: background 0.2s !important;
+  font-family: 'Montserrat', sans-serif !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  transition: all 0.2s !important;
+  margin-left: 6px;
 }
 
 .kontakt-btn:hover {
-  background-color: #1e4a2d !important;
+  background-color: #B8976A !important;
+  color: white !important;
 }
 
 .kontakt-btn::after {
   display: none !important;
 }
 
+/* Dropdown */
 .dropdown {
   position: relative;
 }
@@ -155,27 +180,31 @@
   position: absolute;
   top: 100%;
   left: 0;
-  background: #ffffff;
-  border-radius: 10px;
+  background: #EDE8DC;
+  border-radius: 6px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.12);
   padding: 8px 0;
   min-width: 220px;
   z-index: 999;
   list-style: none;
+  border-top: 2px solid #B8976A;
 }
 
 .dropdown-menu li a {
   padding: 10px 20px !important;
-  color: #3a3a3a !important;
-  font-size: 14px !important;
-  font-weight: 400 !important;
+  color: #1B2A4A !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  font-family: 'Montserrat', sans-serif !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
   display: block;
   transition: background 0.2s;
 }
 
 .dropdown-menu li a:hover {
-  background: #F8F5EF;
-  color: #2C5F3E !important;
+  background: #D4C9B5;
+  color: #B8976A !important;
 }
 
 .dropdown-menu li a::after {
@@ -184,4 +213,83 @@
 
 .dropdown:hover .dropdown-menu {
   display: block;
+}
+
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+
+  span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: #1B2A4A;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  &.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  &.open span:nth-child(2) {
+    opacity: 0;
+  }
+  &.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+/* Мобилен мени */
+.mobile-menu {
+  background: #EDE8DC;
+  border-top: 1px solid #D4C9B5;
+  padding: 16px 0;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul li a {
+    display: block;
+    padding: 12px 24px;
+    color: #1B2A4A;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid rgba(184,151,106,0.15);
+    transition: all 0.2s;
+
+    &:hover {
+      background: #D4C9B5;
+      color: #B8976A;
+      padding-left: 32px;
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav-right { display: none; }
+
+  .nav-inner {
+    justify-content: space-between;
+    min-height: 70px;
+  }
+
+  .logo-img { height: 50px !important; }
+  .logo-brand { font-size: 20px; }
+  .logo-tagline { display: none; }
 }
