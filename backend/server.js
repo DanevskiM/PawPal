@@ -18,6 +18,7 @@ app.use(express.json());
 app.use('/api', contactRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/reservations', reservationRoutes);
+app.use('/api/registrations', require('./routes/registration.routes'));
 
 app.get('/', (req, res) => {
   res.send('PawPal backend is running');
