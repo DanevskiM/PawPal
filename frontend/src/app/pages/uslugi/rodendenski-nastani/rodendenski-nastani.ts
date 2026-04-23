@@ -9,9 +9,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './rodendenski-nastani.css',
 })
 export class RodendenskiNastaniComponent {
-  activeSection: string | null = null;
+  activeSection = '';
 
   toggle(section: string) {
-    this.activeSection = this.activeSection === section ? null : section;
+    this.activeSection = this.activeSection === section ? '' : section;
   }
 }
