@@ -1,1 +1,122 @@
-<p>rodendenski-nastani works!</p>
+<div class="rodendenski-page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-content">
+      <span class="badge">Родендени и настани</span>
+      <h1>Прославете го роденденот на вашето милениче</h1>
+      <p>Вашето куче го опсипува вашето семејство со безусловна љубов и лојалност — возвратете ја услугата со незаборавна прослава!</p>
+      <a routerLink="/kontakt" class="hero-btn">Закажи прослава</a>
+    </div>
+  </div>
+
+  <!-- ВОВЕД -->
+  <section class="section white-section">
+    <div class="container two-col">
+      <div class="text-block">
+        <h2>Специјален ден за вашиот миленик</h2>
+        <p>Нашите кучиња се разгалуваат секој ден, но нивните родендени се всушност легитимна причина за сериозно РАЗГАЛУВАЊЕ! PawPal ви нуди целосна организација и простор за да го прославите роденденот на вашето домашно милениче.</p>
+        <p>Ви нудиме прекрасен и уникатен простор за забава, игра и релаксација, со надзор од стручен и обучен тим.</p>
+      </div>
+      <div class="img-block">
+        <div class="img-placeholder">Слика од прослава</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЧЕКОРИ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-green">Организација</span>
+        <h2>Изградете ја совршената прослава</h2>
+        <p>Кликнете на секоја опција за повеќе информации</p>
+      </div>
+
+      <div class="steps-grid">
+
+        <div class="step-card" [class.active]="activeSection === 'lokacija'" (click)="toggle('lokacija')">
+          <div class="step-num">01</div>
+          <h3>Локација</h3>
+          <p *ngIf="activeSection !== 'lokacija'">Уникатен и единствен простор за забава, игра и релаксација.</p>
+          <p *ngIf="activeSection === 'lokacija'">Без разлика дали вашето куче претпочита торта, почести или цела роденденска забава — PawPal ви нуди целосна организација и простор во опуштена атмосфера во нашиот центар за миленици.</p>
+          <div class="step-img" *ngIf="activeSection === 'lokacija'">Слика од локација</div>
+        </div>
+
+        <div class="step-card" [class.active]="activeSection === 'drustvo'" (click)="toggle('drustvo')">
+          <div class="step-num">02</div>
+          <h3>Друштво</h3>
+          <p *ngIf="activeSection !== 'drustvo'">Поканете ги крзнените пријатели за незаборавна забава.</p>
+          <p *ngIf="activeSection === 'drustvo'">Што е забава за кутре без целата банда? Поканете го екипажот на еден ден трчање, грицки и душкање како прослава на раѓањето на вашиот крзнен член на семејството.</p>
+          <div class="step-img" *ngIf="activeSection === 'drustvo'">Слика од кучиња</div>
+        </div>
+
+        <div class="step-card" [class.active]="activeSection === 'dekoracija'" (click)="toggle('dekoracija')">
+          <div class="step-num">03</div>
+          <h3>Декорација</h3>
+          <p *ngIf="activeSection !== 'dekoracija'">Креативна декорација по сите светски стандарди.</p>
+          <p *ngIf="activeSection === 'dekoracija'">Го прифативме овој светски тренд и организираме роденденски забави со многу љубов и креативност. Тимот ќе се погрижи вашето милениче да се чувствува како главна роденденска ѕвезда.</p>
+          <div class="step-img" *ngIf="activeSection === 'dekoracija'">Слика од декорација</div>
+        </div>
+
+        <div class="step-card" [class.active]="activeSection === 'slatkosti'" (click)="toggle('slatkosti')">
+          <div class="step-num">04</div>
+          <h3>Слатки задоволства</h3>
+          <p *ngIf="activeSection !== 'slatkosti'">Торта, грицки и изненадувања за вашиот миленик.</p>
+          <p *ngIf="activeSection === 'slatkosti'">Тука е и тортата за славеникот во омилен облик и вкус, вкусни задоволства и други изненадувања. Шарени реквизити за забава и крзнени пријатели.</p>
+          <div class="step-img" *ngIf="activeSection === 'slatkosti'">Слика од торта</div>
+        </div>
+
+        <div class="step-card" [class.active]="activeSection === 'foto'" (click)="toggle('foto')">
+          <div class="step-num">05</div>
+          <h3>Фотосесија</h3>
+          <p *ngIf="activeSection !== 'foto'">Незаборавни спомени од специјалниот ден.</p>
+          <p *ngIf="activeSection === 'foto'">Фотосесија од забавата, видео материјал за одбележување и спомен од забавата и реквизити за славеникот и неговите пријатели.</p>
+          <div class="step-img" *ngIf="activeSection === 'foto'">Слика од фотосесија</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ЦЕНА -->
+  <section class="section white-section">
+    <div class="container">
+      <div class="price-box">
+        <div class="price-box-left">
+          <span class="badge-green">Ценовник</span>
+          <h2>Комплетна роденденска забава</h2>
+          <p>Се што треба да направите е да се јавите, да закажете термин и да го донесете вашето милениче — ние го организираме сè останато!</p>
+          <a routerLink="/kontakt" class="hero-btn" style="margin-top: 1.5rem; display: inline-block;">Направи резервација</a>
+        </div>
+        <div class="price-box-right">
+          <div class="price-main">
+            <div class="price-num">5.000 <span>МКД</span></div>
+            <div class="price-desc">до 5 гости · со престој во градинка</div>
+          </div>
+          <div class="price-extra">
+            <div class="price-extra-item">
+              <span>Секој дополнителен гостин</span>
+              <strong>+ 500 МКД</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТ -->
+  <section class="section kontakt-section">
+    <div class="container">
+      <div class="kontakt-box">
+        <h2>Закажете прослава денес</h2>
+        <p>За закажување јавете се на нашиот број или посетете ја контакт страницата.</p>
+        <div class="kontakt-actions">
+          <a href="tel:+38970000000" class="btn-phone">+389 70 000 000</a>
+          <a routerLink="/kontakt" class="btn-kontakt">Контакт страница →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
