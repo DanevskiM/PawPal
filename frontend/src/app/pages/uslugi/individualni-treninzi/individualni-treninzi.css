@@ -220,6 +220,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
+  grid-auto-rows: 1fr; /* ← ова, наместо align-items: stretch */
 }
 
 .price-card {
@@ -230,6 +231,8 @@
   padding: 2rem;
   transition: all 0.2s;
   position: relative;
+ 
+  box-sizing: border-box;
 
   &:hover {
     transform: translateY(-4px);

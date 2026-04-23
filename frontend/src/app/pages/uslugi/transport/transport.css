@@ -563,22 +563,16 @@
     .header-row { display: none; }
   }
 
-  .hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-content {
-  text-align: center !important;
+  .hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
   margin: 0 auto;
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  left: 50%;
+  transform: translateX(-20%);
 }
 
-.hero h1,
-.hero p,
-.hero .badge,
-.hero-btn {
-  text-align: center !important;
-  margin-left: auto;
-  margin-right: auto;
-}
+  
