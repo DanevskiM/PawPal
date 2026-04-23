@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600&display=swap');
+
 .grooming-hero {
   background-image: url('/assets/day-care-2.jpg');
   background-size: cover;
   background-position: center;
-  height: 600px;
-  width: 96%;
+  height: 100vh;
+  width: 100%;
   display: flex;
   align-items: flex-end;
   padding-bottom: 60px;
   position: relative;
+  margin-top: -94px;
 
   &::before {
     content: '';
@@ -32,7 +35,7 @@
       color: white;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      border-left: 5px solid #4A7C59;
+      border-left: 5px solid #B8976A;
       padding-left: 20px;
       text-shadow: 0 2px 12px rgba(0,0,0,0.3);
     }
@@ -41,21 +44,22 @@
 
 .grooming-why {
   padding: 80px 40px;
-  background-color: #F8F5EF;
+  background-color: #EDE8DC;
   text-align: center;
 
   h2 {
     font-size: 2rem;
     font-weight: 700;
-    color: #1A2115;
+    color: #1B2A4A;
     margin-bottom: 24px;
+    font-family: 'Playfair Display', Georgia, serif;
 
     &::after {
       content: '';
       display: block;
       width: 60px;
-      height: 3px;
-      background: #4A7C59;
+      height: 2px;
+      background: #B8976A;
       margin: 12px auto 0;
       border-radius: 2px;
     }
@@ -67,44 +71,47 @@
 
     p {
       font-size: 1rem;
-      color: #6B7566;
+      color: #5C5245;
       line-height: 1.85;
       margin-bottom: 16px;
+      font-family: 'Montserrat', sans-serif;
     }
   }
 }
 
 .grooming-steps {
   padding: 60px 40px;
-  background: #F0EDE6;
+  background: #F5F0E8;
 
   h2 {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #1A2115;
+    color: #1B2A4A;
     margin-bottom: 8px;
+    font-family: 'Playfair Display', Georgia, serif;
 
     &::after {
       content: '';
       display: block;
       width: 50px;
-      height: 3px;
-      background: #4A7C59;
+      height: 2px;
+      background: #B8976A;
       margin-top: 10px;
       border-radius: 2px;
     }
   }
 
   .tabs-subtitle {
-    font-size: 0.95rem;
-    color: #6B7566;
+    font-size: 0.9rem;
+    color: #5C5245;
     margin-bottom: 28px;
+    font-family: 'Montserrat', sans-serif;
   }
 
   .tabs {
     display: flex;
     gap: 0;
-    border-bottom: 2px solid #E0D9CC;
+    border-bottom: 2px solid #D4C9B5;
     margin-bottom: 32px;
     width: 100%;
 
@@ -117,26 +124,27 @@
       margin-bottom: -2px;
       font-size: 1rem;
       font-weight: 700;
-      color: #B0AA9E;
+      color: #B0A898;
       cursor: pointer;
       transition: all 0.2s;
       border-radius: 0;
       text-align: center;
       letter-spacing: 0.08em;
+      font-family: 'Montserrat', sans-serif;
 
       &.active {
-        color: #4A7C59;
-        border-bottom-color: #4A7C59;
+        color: #B8976A;
+        border-bottom-color: #B8976A;
       }
 
       &:hover:not(.active) {
-        color: #1A2115;
+        color: #1B2A4A;
       }
     }
   }
 
   .tab-content {
-    border-radius: 14px;
+    border-radius: 4px;
     overflow: hidden;
 
     .tab-body {
@@ -168,29 +176,27 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      gap: 12px;
 
       h3 {
         font-size: 2rem;
         font-weight: 700;
         color: white;
-        margin-bottom: 10px;
-        padding: 0;
+        margin: 0;
+        font-family: 'Playfair Display', Georgia, serif;
       }
 
       .duration {
-           position: relative;
-      z-index: 1;
-      padding: 8px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-        width: fit-content;
-        background: rgba(255, 255, 255, 0.2);
+        padding: 6px 14px;
+        background: rgba(184,151,106,0.3);
         color: white;
-        font-size: 14px;
-        font-weight: 800;
+        font-size: 13px;
+        font-weight: 600;
         border-radius: 30px;
         backdrop-filter: blur(4px);
+        border: 1px solid rgba(184,151,106,0.5);
+        font-family: 'Montserrat', sans-serif;
+        letter-spacing: 0.05em;
       }
 
       p {
@@ -198,14 +204,15 @@
         color: rgba(255, 255, 255, 0.85);
         line-height: 1.85;
         max-width: 600px;
-        padding: 0;
         margin: 0;
+        font-family: 'Montserrat', sans-serif;
       }
     }
   }
 }
+
 .grooming-spa {
-  background: #F8F5EF;
+  background: #EDE8DC;
   padding: 0;
   margin: 0;
   width: 100%;
@@ -213,7 +220,7 @@
 
   .spa-row {
     display: flex;
-    min-height: 450px;
+    min-height: 500px;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -232,31 +239,34 @@
       h2 {
         font-size: 2rem;
         font-weight: 700;
-        color: #1A2115;
+        color: #1B2A4A;
         margin-bottom: 20px;
+        font-family: 'Playfair Display', Georgia, serif;
+        position: relative;
+        padding-bottom: 16px;
 
         &::after {
           content: '';
-          display: block;
-          width: 50px;
-          height: 3px;
-          background: #4A7C59;
-          margin-top: 10px;
-          border-radius: 2px;
+          position: absolute;
+          bottom: 0; left: 0;
+          width: 40px;
+          height: 2px;
+          background: #B8976A;
         }
       }
 
       p {
-        font-size: 1rem;
-        color: #6B7566;
-        line-height: 1.85;
+        font-size: 14px;
+        color: #5C5245;
+        line-height: 1.9;
+        font-family: 'Montserrat', sans-serif;
       }
     }
 
     .spa-image {
       flex: 1.5;
       overflow: hidden;
-      min-height: 450px;
+      min-height: 500px;
       margin: 0;
       padding: 0;
 
@@ -265,24 +275,31 @@
         height: 100%;
         object-fit: cover;
         display: block;
-        margin: 0;
-        padding: 0;
       }
     }
   }
 }
 
-
 .grooming-faq {
   padding: 80px 60px;
-  background: #F8F5EF;
+  background: #F5F0E8;
   text-align: center;
 
   h2 {
     font-size: 2.2rem;
     font-weight: 700;
-    color: #1A2115;
+    color: #1B2A4A;
     margin-bottom: 48px;
+    font-family: 'Playfair Display', Georgia, serif;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: #B8976A;
+      margin: 14px auto 0;
+    }
   }
 
   .faq-list {
@@ -299,23 +316,26 @@
   }
 
   .faq-item {
-    background: white;
-    border-radius: 12px;
+    background: #FDFAF5;
+    border-radius: 4px;
     padding: 24px;
     cursor: pointer;
     transition: all 0.2s;
-    border: 1.5px solid #E8E0D0;
+    border: 1.5px solid #D4C9B5;
+    border-top: 3px solid #D4C9B5;
 
     &:hover {
-      border-color: #4A7C59;
+      border-color: #B8976A;
+      border-top-color: #B8976A;
     }
 
     &.open {
-      border-color: #4A7C59;
-      background: #FAFAF7;
+      border-color: #B8976A;
+      border-top-color: #B8976A;
+      background: #FDFAF5;
 
       .faq-icon {
-        background: #4A7C59;
+        background: #1B2A4A;
         color: white;
       }
     }
@@ -328,19 +348,20 @@
     gap: 16px;
 
     span:first-child {
-      font-size: 1rem;
-      font-weight: 700;
-      color: #1A2115;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #1B2A4A;
       line-height: 1.4;
+      font-family: 'Montserrat', sans-serif;
     }
   }
 
   .faq-icon {
     width: 36px;
     height: 36px;
-    border-radius: 8px;
-    background: #EEF3EA;
-    color: #4A7C59;
+    border-radius: 4px;
+    background: rgba(184,151,106,0.1);
+    color: #B8976A;
     font-size: 1.4rem;
     font-weight: 300;
     display: flex;
@@ -353,13 +374,61 @@
   .faq-answer {
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 1px solid #E8E0D0;
+    border-top: 1px solid #D4C9B5;
 
     p {
-      font-size: 0.95rem;
-      color: #6B7566;
+      font-size: 0.9rem;
+      color: #5C5245;
       line-height: 1.75;
       margin: 0;
+      font-family: 'Montserrat', sans-serif;
     }
   }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .grooming-hero {
+    height: 100vh;
+    margin-top: -70px;
+
+    .hero-content {
+      padding: 0 24px;
+
+      h1 { font-size: 2rem; }
+    }
+  }
+
+  .grooming-why {
+    padding: 60px 24px;
+  }
+
+  .grooming-steps {
+    padding: 40px 24px;
+
+    .tabs button { font-size: 0.85rem; }
+    .tab-text { padding: 24px; }
+    .tab-text h3 { font-size: 1.5rem; }
+  }
+
+  .grooming-spa .spa-row {
+    flex-direction: column !important;
+    min-height: auto;
+
+    .spa-text { padding: 40px 24px; }
+    .spa-image { min-height: 300px; }
+  }
+
+  .grooming-faq {
+    padding: 60px 24px;
+
+    .faq-list {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .grooming-hero .hero-content h1 { font-size: 1.6rem; }
+  .grooming-steps .tabs button { font-size: 0.75rem; padding: 12px 0; }
 }
