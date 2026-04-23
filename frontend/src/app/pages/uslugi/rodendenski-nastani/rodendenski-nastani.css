@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600&display=swap');
 
+
+
 .rodendenski-page {
   background-color: #EDE8DC;
   min-height: 100vh;
@@ -22,42 +24,61 @@
 
 /* ── HERO ── */
 .hero {
-  background: #1B2A4A;
-  padding: 7rem 2rem;
-  text-align: center;
   position: relative;
+  height: 600px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
 
   &::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      rgba(184,151,106,0.03) 0px,
-      rgba(184,151,106,0.03) 1px,
-      transparent 1px,
-      transparent 60px
-    );
-  }
-
-  &::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 2px;
-    background: #B8976A;
-    margin: 24px auto 0;
-    position: relative;
+    background: rgba(10, 15, 30, 0.55);
     z-index: 1;
   }
+
+  &::after { display: none; }
 }
 
 .hero-content {
   max-width: 700px;
   margin: 0 auto;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  text-align: center;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  color: white;
+  font-family: 'Playfair Display', Georgia, serif;
+  margin: 0 0 1.2rem;
+  line-height: 1.25;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+}
+
+.hero p {
+  color: rgba(255,255,255,0.8);
+  font-size: 15px;
+  margin-bottom: 2.5rem;
+  line-height: 1.85;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .badge {
@@ -69,46 +90,33 @@
   font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  border-left: 2px solid #B8976A;
+  border: 1px solid rgba(184,151,106,0.6);
+  border-radius: 2px;
   margin-bottom: 1.5rem;
   font-family: 'Montserrat', sans-serif;
-}
-
-.hero h1 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  color: #ffffff;
-  font-family: 'Playfair Display', Georgia, serif;
-  margin: 0 0 1.2rem;
-  line-height: 1.3;
-}
-
-.hero p {
-  color: rgba(255,255,255,0.7);
-  font-size: 15px;
-  margin-bottom: 2.5rem;
-  line-height: 1.85;
-  max-width: 580px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .hero-btn {
   display: inline-block;
   background: #B8976A;
   color: white;
-  padding: 14px 32px;
+  padding: 14px 36px;
   border-radius: 4px;
   text-decoration: none;
   font-weight: 600;
   font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.15em;
   transition: all 0.2s;
   font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 4px 20px rgba(184,151,106,0.4);
 
-  &:hover { background: white; color: #1B2A4A; }
+  &:hover {
+    background: white;
+    color: #1B2A4A;
+    box-shadow: none;
+  }
 }
-
 /* ── TWO COL ── */
 .two-col {
   display: grid;
