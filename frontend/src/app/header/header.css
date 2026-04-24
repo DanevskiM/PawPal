@@ -23,7 +23,6 @@
   min-height: 90px;
 }
 
-/* Лого */
 .logo-wrap {
   display: flex;
   align-items: center;
@@ -63,7 +62,6 @@
   margin-top: 4px;
 }
 
-/* Десно — контакт + линкови */
 .nav-right {
   display: flex;
   flex-direction: column;
@@ -75,17 +73,26 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
 
-  a {
-    color: #B8976A;
-    text-decoration: none;
-    font-size: 11px;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
+.nav-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #B8976A;
+  text-decoration: none;
+  font-size: 11px;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
 
-    &:hover { color: #1B2A4A; }
-  }
+.nav-contact-item svg {
+  flex-shrink: 0;
+}
+
+.nav-contact-item:hover {
+  color: #1B2A4A;
 }
 
 .nav-divider {
@@ -93,7 +100,6 @@
   font-size: 12px;
 }
 
-/* Линкови */
 .header-list {
   list-style: none;
   display: flex;
@@ -148,7 +154,6 @@
   background: #B8976A !important;
 }
 
-/* Контакт копче */
 .kontakt-btn {
   background-color: #1B2A4A !important;
   color: #B8976A !important;
@@ -171,7 +176,6 @@
   display: none !important;
 }
 
-/* Dropdown */
 .dropdown {
   position: relative;
 }
@@ -216,8 +220,6 @@
   display: block;
 }
 
-
-/* Hamburger */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -226,70 +228,68 @@
   border: none;
   cursor: pointer;
   padding: 8px;
-
-  span {
-    display: block;
-    width: 26px;
-    height: 2px;
-    background: #1B2A4A;
-    border-radius: 2px;
-    transition: all 0.3s;
-  }
-
-  &.open span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-  &.open span:nth-child(2) {
-    opacity: 0;
-  }
-  &.open span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
 }
 
-/* Мобилен мени */
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: #1B2A4A;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 .mobile-menu {
   background: #EDE8DC;
   border-top: 1px solid #D4C9B5;
   padding: 16px 0;
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  ul li a {
-    display: block;
-    padding: 12px 24px;
-    color: #1B2A4A;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 600;
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    border-bottom: 1px solid rgba(184,151,106,0.15);
-    transition: all 0.2s;
-
-    &:hover {
-      background: #D4C9B5;
-      color: #B8976A;
-      padding-left: 32px;
-    }
-  }
 }
 
-/* Responsive */
+.mobile-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-menu ul li a {
+  display: block;
+  padding: 12px 24px;
+  color: #1B2A4A;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid rgba(184,151,106,0.15);
+  transition: all 0.2s;
+}
+
+.mobile-menu ul li a:hover {
+  background: #D4C9B5;
+  color: #B8976A;
+  padding-left: 32px;
+}
+
 @media (max-width: 768px) {
   .hamburger { display: flex; }
   .nav-right { display: none; }
-
   .nav-inner {
     justify-content: space-between;
     min-height: 70px;
   }
-
   .logo-img { height: 50px !important; }
   .logo-brand { font-size: 20px; }
   .logo-tagline { display: none; }
